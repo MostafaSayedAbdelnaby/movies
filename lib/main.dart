@@ -4,17 +4,16 @@ import 'package:movies_app/screen/home_screen/home_screen.dart';
 import 'package:movies_app/screen/onboarding_screen.dart';
 import 'package:movies_app/screen/splash_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
+void main()  {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await EasyLocalization.ensureInitialized();
   runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ar')],
-      path: 'assets/translations',
-      fallbackLocale: const Locale('en'),
-      child: const MyApp(),
-    ),
-  );
+      // EasyLocalization(
+      //     supportedLocales: const [Locale('ar'),Locale('en')],
+      //     path: 'assets/translations',
+      //     fallbackLocale: const Locale('en'),
+      //     child: const MyApp())
+      const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,17 +22,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      routes: {
-        SplashScreen.tag: (context) => SplashScreen(),
-        OnBoardingScreen.tag: (context) => OnBoardingScreen(),
-        HomeScreen.tag: (context) => HomeScreen(),
-      },
-      initialRoute: OnBoardingScreen.tag,
-      // SplashScreen.tag,
-    );
+        debugShowCheckedModeBanner: false,
+        // localizationsDelegates: context.localizationDelegates,
+        // supportedLocales: context.supportedLocales,
+        // locale: context.locale,
+        routes: {
+          SplashScreen.tag: (context) => SplashScreen(),
+          OnBoardingScreen.tag: (context) => OnBoardingScreen(),
+          HomeScreen.tag: (context) => HomeScreen(),
+        },
+        initialRoute: HomeScreen.tag
+        // OnBoardingScreen.tag,
+        // SplashScreen.tag,
+        );
   }
 }
