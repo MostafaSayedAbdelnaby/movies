@@ -1,5 +1,4 @@
 import "dart:convert";
-
 import "package:http/http.dart" as http;
 import "package:movies_app/features/home/data/models/movie_model.dart";
 
@@ -13,13 +12,14 @@ class ApiHelper {
     });
     var data = response.body;
     var json = jsonDecode(data);
-    var movieModelList = json["results"].map((item){
+    var movieModelList = (json["results"] as List).map((item){
        return MovieModel.fromJson(item);
     }).toList();
-    print(movieModelList[0].title);
-    
+     // print(movieModelList[1].title);
+    // print(json);
     return  movieModelList;
   }
+
   Future<List<MovieModel>> getUpcomingMovies() async {
     var uri = Uri.https(baseUrl, "/3/movie/upcoming", {});
     var response = await http.get(uri, headers: {

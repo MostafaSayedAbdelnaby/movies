@@ -6,11 +6,12 @@ class HomeRepo{
   Future<List<MovieEntity>> getWatchNowMovies() async {
    var data = await apiHelper.getWatchNowMovies();
    var movieEntityList = data.map((item) => item as MovieEntity).toList();
+  print(movieEntityList);
    return movieEntityList;
   }
 
- Future<List<MovieEntity>> getUpcominMovies() async {
-   var data = await apiHelper.getUcomingMovies();
+ Future<List<MovieEntity>> getUpcomingMovies() async {
+   var data = await apiHelper.getUpcomingMovies();
    var movieEntityList = data.map((item) => item as MovieEntity).toList();
    return movieEntityList;
   }

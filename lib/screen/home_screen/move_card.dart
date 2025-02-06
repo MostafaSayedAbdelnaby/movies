@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/features/home/data/models/movie_model.dart';
+import 'package:movies_app/features/home/domain/entities/movie_entity.dart';
 
 class MovieCard extends StatelessWidget {
+  final MovieEntity? movieModel;
   const MovieCard({
     super.key,
+    this.movieModel,
   });
 
   @override
@@ -31,8 +35,8 @@ class MovieCard extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
-                  '7.7',
+                 Text(
+                  movieModel?.voteAverage.toString() ?? "" ,
                   style: TextStyle(
                    fontSize: 16,
                    fontWeight: FontWeight.w400,
