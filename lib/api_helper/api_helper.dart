@@ -5,7 +5,7 @@ import "package:movies_app/features/home/data/models/movie_model.dart";
 
 class ApiHelper {
   static const String baseUrl = "api.themoviedb.org";
-   Future<List<MovieModel>> geWatchNowMovies() async {
+   Future<List<MovieModel>> getWatchNowMovies() async {
     var uri = Uri.https(baseUrl, "/3/movie/now_playing", {});
     var response = await http.get(uri, headers: {
       "Authorization":
