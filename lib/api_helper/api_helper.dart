@@ -20,5 +20,35 @@ class ApiHelper {
     
     return  movieModelList;
   }
+  Future<List<MovieModel>> getUpcomingMovies() async {
+    var uri = Uri.https(baseUrl, "/3/movie/upcoming", {});
+    var response = await http.get(uri, headers: {
+      "Authorization":
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTY5NGY4ZDdiYjkwZDI5MTNiZmNhYWEwODk5Yzc4MSIsIm5iZiI6MTczODc0Nzg5Ny4xODUsInN1YiI6IjY3YTMyZmY5ZGMyNGVlOTNkMTgxMTQ0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GaZ3lxtZ0DbPWg2mr5RrPvFZ9IyaQfwidPBUCe_HsO4"
+    });
+    var data = response.body;
+    var json = jsonDecode(data);
+    var movieModelList = json["results"].map((item){
+       return MovieModel.fromJson(item);
+    }).toList();
+    print(movieModelList[0].title);
+    
+    return  movieModelList;
+  }
+  Future<List<MovieModel>> getTopRatedMovies() async {
+    var uri = Uri.https(baseUrl, "/3/movie/top_rated", {});
+    var response = await http.get(uri, headers: {
+      "Authorization":
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTY5NGY4ZDdiYjkwZDI5MTNiZmNhYWEwODk5Yzc4MSIsIm5iZiI6MTczODc0Nzg5Ny4xODUsInN1YiI6IjY3YTMyZmY5ZGMyNGVlOTNkMTgxMTQ0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GaZ3lxtZ0DbPWg2mr5RrPvFZ9IyaQfwidPBUCe_HsO4"
+    });
+    var data = response.body;
+    var json = jsonDecode(data);
+    var movieModelList = json["results"].map((item){
+       return MovieModel.fromJson(item);
+    }).toList();
+    print(movieModelList[0].title);
+    
+    return  movieModelList;
+  }
 }
   //eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTY5NGY4ZDdiYjkwZDI5MTNiZmNhYWEwODk5Yzc4MSIsIm5iZiI6MTczODc0Nzg5Ny4xODUsInN1YiI6IjY3YTMyZmY5ZGMyNGVlOTNkMTgxMTQ0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GaZ3lxtZ0DbPWg2mr5RrPvFZ9IyaQfwidPBUCe_HsO4
