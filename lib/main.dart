@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/api_helper/api_helper.dart';
 import 'package:movies_app/screen/home_screen/home_screen.dart';
 import 'package:movies_app/screen/onboarding_screen.dart';
 import 'package:movies_app/screen/splash_screen.dart';
 
 void main()  {
+  ApiHelper().getMovies();
   // WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();
   runApp(
