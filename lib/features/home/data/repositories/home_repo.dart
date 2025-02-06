@@ -9,4 +9,16 @@ class HomeRepo{
    return movieEntityList;
   }
 
+ Future<List<MovieEntity>> getUpcominMovies() async {
+   var data = await apiHelper.getUcomingMovies();
+   var movieEntityList = data.map((item) => item as MovieEntity).toList();
+   return movieEntityList;
+  }
+  
+  Future<List<MovieEntity>> getTopRatedMovies() async {
+   var data = await apiHelper.getTopRatedMovies();
+   var movieEntityList = data.map((item) => item as MovieEntity).toList();
+   return movieEntityList;
+  }
+
 }
