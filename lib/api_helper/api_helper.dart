@@ -6,7 +6,8 @@ class ApiHelper {
   static const String baseUrl = "api.themoviedb.org";
    Future<List<MovieModel>> getWatchNowMovies() async {
     var uri = Uri.https(baseUrl, "/3/movie/now_playing", {});
-    var response = await http.get(uri, headers: {
+    try {
+      var response = await http.get(uri, headers: {
       "Authorization":
           "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTY5NGY4ZDdiYjkwZDI5MTNiZmNhYWEwODk5Yzc4MSIsIm5iZiI6MTczODc0Nzg5Ny4xODUsInN1YiI6IjY3YTMyZmY5ZGMyNGVlOTNkMTgxMTQ0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GaZ3lxtZ0DbPWg2mr5RrPvFZ9IyaQfwidPBUCe_HsO4"
     });
@@ -15,9 +16,16 @@ class ApiHelper {
     var movieModelList = (json["results"] as List).map((item){
        return MovieModel.fromJson(item);
     }).toList();
-     // print(movieModelList[1].title);
+      print(movieModelList[1].title);
     // print(json);
     return  movieModelList;
+      
+    }
+    catch(e){
+      print(e);
+      return [];
+    }
+    
   }
 
   Future<List<MovieModel>> getUpcomingMovies() async {

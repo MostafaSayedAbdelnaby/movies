@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/api_helper/api_helper.dart';
 import 'package:movies_app/features/home/data/models/movie_model.dart';
 import 'package:movies_app/features/home/domain/entities/movie_entity.dart';
 
 class MovieCard extends StatelessWidget {
-  final MovieEntity? movieModel;
-  const MovieCard({
+  //MovieEntity movieEntity;
+  //String? poster_path;
+  MovieModel? movieModel;
+   MovieCard({ this.movieModel,
     super.key,
-    this.movieModel,
   });
 
   @override
   Widget build(BuildContext context) {
+    print(movieModel?.title);
     return Container(
       height: 351,
       width: 234,
@@ -22,7 +25,9 @@ class MovieCard extends StatelessWidget {
         children: [
           ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset('assets/images/onboarding_6.png')),
+              child: Image.network(
+                'https://image.tmdb.org/t/p/w500/${movieModel?.posterPath}',
+              )),
           Container(
             margin: const EdgeInsets.only(top: 12, right: 8, left: 8),
             alignment: Alignment.center,
@@ -36,10 +41,9 @@ class MovieCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                  Text(
-                  movieModel?.voteAverage.toString() ?? "" ,
+                  movieModel?.voteAverage.toString() ?? '5.5',
                   style: TextStyle(
-                   fontSize: 16,
-                   fontWeight: FontWeight.w400,
+                   
                     color: Colors.white
                   ),
                 ),

@@ -7,7 +7,7 @@ import 'package:movies_app/screen/onboarding_screen.dart';
 import 'package:movies_app/screen/splash_screen.dart';
 
 void main()  {
-  // ApiHelper().getWatchNowMovies();
+   ApiHelper().getWatchNowMovies();
   // HomeRepo().getWatchNowMovies();
   // WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();
