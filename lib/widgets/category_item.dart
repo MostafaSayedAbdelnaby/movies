@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
   final bool isSelected;
-
-  const CategoryItem({super.key, required this.isSelected});
+  final String nameCategory;
+   const CategoryItem({super.key, required this.isSelected,required this.nameCategory});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,8 @@ class CategoryItem extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Text('Action',
+      child: Text(
+          nameCategory,
           style: TextStyle(
             color: isSelected ? const Color(0xFF202020) : const Color(0xFFF6BD00),
           )),

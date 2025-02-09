@@ -17,7 +17,7 @@ class HomeTabUp extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
-          height: 550,
+          height: 450,
           width: double.infinity,
           child: Image.asset(
             'assets/images/onboarding_6.png',
@@ -25,13 +25,14 @@ class HomeTabUp extends StatelessWidget {
           ),
         ),
         Container(
-          height: 550,
+          height: 450,
           width: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color(0xFF121312).withOpacity(0.8), // Dark color at the bottom
-                const Color(0xFF121312).withOpacity(0.6), // Transparent at the top
+                const Color(0xFF121312).withOpacity(0.8),
+                const Color(0xFF121312).withOpacity(0.6),
+                const Color(0xFF121312),
               ],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
@@ -42,34 +43,42 @@ class HomeTabUp extends StatelessWidget {
           children: [
             Image.asset(
               'assets/images/Available Now.png',
-              // fit: BoxFit.cover,
             ),
-            const SizedBox(height: 24),
-             FutureBuilder<List<MovieModel>>(
-               future: ApiHelper().getWatchNowMovies(),
-               builder: (context, snapshot) {
-                 return CarouselSlider.builder(
-                                      options: CarouselOptions(
-                    initialPage: 1,
-                    aspectRatio: 16/9,
-                    animateToClosest: true,
-                    disableCenter: true,
-                    enlargeCenterPage: true,
-                    enableInfiniteScroll: false,
-                    viewportFraction: 0.39,
-                    enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                    enlargeFactor: 0.55,
-                    height: 280,
-                    scrollDirection: Axis.horizontal),
-                                      itemCount:snapshot.data?.length ?? 0,
-                                      itemBuilder: (context, index, realIndex) {
-                                        return  MovieCard(movieModel: snapshot.data?[index]);
-                                      },
-                                    );
-               }
-             )
-              
-            ,
+            const SizedBox(height: 20),
+            FutureBuilder<List<MovieModel>>(
+                future: ApiHelper().getWatchNowMovies(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('E123: ${snapshot.error}'));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text('No data available'));
+                  }
+                  return CarouselSlider.builder(
+                    options: CarouselOptions(
+                      initialPage: 1,
+                      aspectRatio: 16 / 9,
+                      animateToClosest: true,
+                      disableCenter: false,
+                      enlargeCenterPage: true,
+                      enableInfiniteScroll: false,
+                      viewportFraction: 0.56,
+                      enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                      enlargeFactor: 0.46,
+                      height: 280,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                    itemCount: snapshot.data?.length ?? 0,
+                    itemBuilder: (context, index, realIndex) {
+                      return MovieCard(
+                        // height: 351,
+                        // width: 234,
+                        movieModel: snapshot.data?[index],
+                      );
+                    },
+                  );
+                }),
             const SizedBox(height: 16),
             SizedBox(
               width: 300,

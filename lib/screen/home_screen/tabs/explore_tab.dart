@@ -10,11 +10,20 @@ class ExploreTab extends StatefulWidget {
 }
 int currentIndex = 0;
 
+final List<String> categoryName=[
+  "Action",
+  "Adventure",
+  "Animation",
+  "Biography",
+  "Comedy",
+];
+
 class _ExploreTabState extends State<ExploreTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF202020),
+      // backgroundColor: const Color(0xFF202020),
+      backgroundColor: Colors.transparent,   // remove this
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
@@ -31,16 +40,19 @@ class _ExploreTabState extends State<ExploreTab> {
                               currentIndex = index;
                             });
                           },
-                          child: CategoryItem(isSelected: currentIndex == index)
+                          child: CategoryItem(
+                            isSelected: currentIndex == index,
+                            nameCategory : categoryName[index])
                       );
                     },
                     separatorBuilder: (context, index) => const SizedBox(width: 8),
-                    itemCount: 5),
+                    itemCount: categoryName.length ),
               ),
               const SizedBox(
                 height: 24,
               ),
-              const ExploreList()
+              const ExploreList(
+                movieId: 1,)
             ],
           ),
         ),

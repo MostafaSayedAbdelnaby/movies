@@ -4,11 +4,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/api_helper/api_helper.dart';
 import 'package:movies_app/features/home/data/models/movie_model.dart';
+import '../features/home/data/data_source/remote_data_source.dart';
+import '../features/home/data/models/movie_details_model.dart';
 import '../screen/home_screen/move_card.dart';
 
 class HomeTabDown extends StatelessWidget {
-  const HomeTabDown({super.key});
-
+  const HomeTabDown({super.key, this.movieId});
+  final int? movieId;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +39,7 @@ class HomeTabDown extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         FutureBuilder<List<MovieModel>>(
-          future: ApiHelper().getWatchNowMovies(),
+          future: ApiHelper().getUpcomingMovies(), ///***
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
@@ -51,10 +53,11 @@ class HomeTabDown extends StatelessWidget {
             return CarouselSlider.builder(
               options: CarouselOptions(
                   initialPage: 1,
-                  aspectRatio: 16 / 9,
+                  aspectRatio: 15 / 11,
                   animateToClosest: true,
+                  enableInfiniteScroll: false,
                   disableCenter: true,
-                  viewportFraction: 0.39,
+                  viewportFraction: 0.52,
                   scrollDirection: Axis.horizontal),
               itemCount: snapshot.data?.length ?? 0,
               itemBuilder: (context, index, realIndex) {
@@ -63,6 +66,38 @@ class HomeTabDown extends StatelessWidget {
             );
           }
         ),
+
+        // FutureBuilder<MovieDetailsModel>(
+        //     future: RemoteDataSource().getMovieDetails(movieId ?? 1),   /// ****
+        //     builder: (context, snapshot) {
+        //       if (snapshot.connectionState == ConnectionState.waiting) {
+        //         return const Center(child: CircularProgressIndicator());
+        //       }
+        //       else if (snapshot.hasError) {
+        //         return Center(child: Text('E123: ${snapshot.error}'));
+        //       }
+        //       else if (!snapshot.hasData || snapshot.data == null) {
+        //         return const Center(child: Text('No data available'));
+        //       }
+        //       final movieDetails = snapshot.data!;
+        //
+        //       return CarouselSlider.builder(
+        //         options: CarouselOptions(
+        //             initialPage: 1,
+        //             aspectRatio: 15 / 11,
+        //             animateToClosest: true,
+        //             enableInfiniteScroll: false,
+        //             disableCenter: true,
+        //             viewportFraction: 0.52,
+        //             scrollDirection: Axis.horizontal),
+        //         itemCount:1,
+        //         itemBuilder: (context, index, realIndex) {
+        //           return  MovieCard(remoteDataSource:movieDetails );
+        //         },
+        //       );
+        //     }
+        // ),
+
       ],
     );
   }

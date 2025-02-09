@@ -5,8 +5,6 @@ import 'package:movies_app/features/home/domain/entities/movie_entity.dart';
 import 'package:movies_app/screen/movie_details_screen.dart';
 
 class MovieCard extends StatelessWidget {
-  //MovieEntity movieEntity;
-  //String? poster_path;
   MovieModel? movieModel;
   MovieCard({
     this.movieModel,
@@ -21,6 +19,7 @@ class MovieCard extends StatelessWidget {
       width: 234,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
+        color: Colors.white
       ),
       child: GestureDetector(
         onTap: () {
@@ -48,7 +47,7 @@ class MovieCard extends StatelessWidget {
                 children: [
                   Text(
                     movieModel?.voteAverage.toString() ?? '5.5',
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   const SizedBox(width: 4),
                   Image.asset(
