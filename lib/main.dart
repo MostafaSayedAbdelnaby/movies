@@ -8,7 +8,7 @@ import 'package:movies_app/screen/onboarding_screen.dart';
 import 'package:movies_app/screen/splash_screen.dart';
 
 void main()  {
-   //ApiHelper().getMovieDetails(939243);
+   ApiHelper().searchMovies("marvel");
   // HomeRepo().getWatchNowMovies();
   // WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();

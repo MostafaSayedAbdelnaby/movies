@@ -50,10 +50,10 @@ class ApiHelper {
     });
     var data = response.body;
     var json = jsonDecode(data);
-    var movieModelList = json["results"].map((item) {
+    var movieModelList = (json["results"] as List).map((item) {
       return MovieModel.fromJson(item);
     }).toList();
-    print(movieModelList[0].title);
+    print(json);
 
     return movieModelList;
   }
@@ -61,7 +61,7 @@ class ApiHelper {
 
 //method for retrieving movie details
   Future<MovieDetailsModel?> getMovieDetails(int movieId) async {
-    var uri = Uri.https(baseUrl, "/3/movie/${movieId}", {});
+    var uri = Uri.https(baseUrl, "/3/movie/$movieId", {});
     var response = await http.get(uri, headers: {
       "Authorization":
           "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTY5NGY4ZDdiYjkwZDI5MTNiZmNhYWEwODk5Yzc4MSIsIm5iZiI6MTczODc0Nzg5Ny4xODUsInN1YiI6IjY3YTMyZmY5ZGMyNGVlOTNkMTgxMTQ0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GaZ3lxtZ0DbPWg2mr5RrPvFZ9IyaQfwidPBUCe_HsO4"
@@ -79,6 +79,22 @@ class ApiHelper {
   }
 
 
-  
+  //method for searching movies
+  Future<List<MovieModel>> searchMovies(String query) async {
+    var uri = Uri.https(baseUrl, "/3/search/movie", {"query": query});
+    var response = await http.get(uri, headers: {
+      "Authorization":
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTY5NGY4ZDdiYjkwZDI5MTNiZmNhYWEwODk5Yzc4MSIsIm5iZiI6MTczODc0Nzg5Ny4xODUsInN1YiI6IjY3YTMyZmY5ZGMyNGVlOTNkMTgxMTQ0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GaZ3lxtZ0DbPWg2mr5RrPvFZ9IyaQfwidPBUCe_HsO4"});
+    var data = response.body;
+    var json = jsonDecode(data);
+    var movieModelList = (json["results"] as List).map((item) {
+      return MovieModel.fromJson(item);
+    }).toList();
+    print(json["results"]);
+    return movieModelList;
+  }
+
+
+
 }
   //eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTY5NGY4ZDdiYjkwZDI5MTNiZmNhYWEwODk5Yzc4MSIsIm5iZiI6MTczODc0Nzg5Ny4xODUsInN1YiI6IjY3YTMyZmY5ZGMyNGVlOTNkMTgxMTQ0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GaZ3lxtZ0DbPWg2mr5RrPvFZ9IyaQfwidPBUCe_HsO4
