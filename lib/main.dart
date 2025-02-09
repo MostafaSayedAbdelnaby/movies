@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/api_helper/api_helper.dart';
 import 'package:movies_app/features/home/data/repositories/home_repo.dart';
 import 'package:movies_app/screen/home_screen/home_screen.dart';
+import 'package:movies_app/screen/movie_details_screen.dart';
 import 'package:movies_app/screen/onboarding_screen.dart';
 import 'package:movies_app/screen/splash_screen.dart';
 
 void main()  {
-   ApiHelper().getWatchNowMovies();
+   //ApiHelper().getMovieDetails(939243);
   // HomeRepo().getWatchNowMovies();
   // WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           SplashScreen.tag: (context) => SplashScreen(),
           OnBoardingScreen.tag: (context) => OnBoardingScreen(),
           HomeScreen.tag: (context) => HomeScreen(),
+          MovieDetailsScreen.routeName: (context) => MovieDetailsScreen(),
         },
         initialRoute: HomeScreen.tag
         // OnBoardingScreen.tag,
