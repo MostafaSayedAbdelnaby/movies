@@ -5,8 +5,8 @@ import 'package:movies_app/features/home/domain/entities/movie_entity.dart';
 import 'package:movies_app/screen/movie_details_screen.dart';
 
 class MovieCard extends StatelessWidget {
-  MovieModel? movieModel;
-  MovieCard({
+ final MovieModel? movieModel;
+  const MovieCard({
     this.movieModel,
     super.key,
   });
@@ -32,7 +32,8 @@ class MovieCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
                   'https://image.tmdb.org/t/p/w500/${movieModel?.posterPath}',
-                )),
+                ),
+            ),
             Container(
               margin: const EdgeInsets.only(top: 12, right: 8, left: 8),
               alignment: Alignment.center,
