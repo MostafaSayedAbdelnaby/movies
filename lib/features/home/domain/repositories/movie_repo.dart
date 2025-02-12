@@ -2,4 +2,8 @@ import 'package:movies_app/features/home/data/models/movie_model.dart';
 
 abstract class MovieRepo{
  Future<List<MovieModel>> getNowPlayingMovie();
+ Future<List<MovieModel>> getUpcomingMovies();
+ Future<List<MovieModel>> getTopRatedMovies();
+ Future<List<MovieModel>> searchMovies(String query);
+ Future<List<MovieModel>> getMovieByGenre (String genre) ;
 }

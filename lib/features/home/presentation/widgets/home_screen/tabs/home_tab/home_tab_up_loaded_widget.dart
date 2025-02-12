@@ -1,28 +1,37 @@
-class HomeTabUpLoadedWidget extends StatelessWidget{
-final movieEntityList;
-HomeTabUpLoadedWidget({required this.movieEntityList})
-Widget build(BuildContext context){
-  
-  return CarouselSlider.builder(
-                    options: CarouselOptions(
-                      initialPage: 1,
-                      aspectRatio: 16 / 9,
-                      animateToClosest: true,
-                      disableCenter: false,
-                      enlargeCenterPage: true,
-                      enableInfiniteScroll: false,
-                      viewportFraction: 0.56,
-                      enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                      enlargeFactor: 0.46,
-                      height: 280,
-                      scrollDirection: Axis.horizontal,
-                    ),
-                    itemCount: movieEntityList.length ?? 0,
-                    itemBuilder: (context, index, realIndex) {
-                      return MovieCard(
-                        // height: 351,
-                        // width: 234,
-                        movieModel: movieEntityList?[index],
-                      );
-}
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:movies_app/features/home/data/models/movie_model.dart';
+
+import '../../../movie_card.dart';
+
+class HomeTabUpLoadedWidget extends StatelessWidget {
+  final List<MovieModel> movieModelList;
+
+  const HomeTabUpLoadedWidget({super.key, required this.movieModelList});
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider.builder(
+        options: CarouselOptions(
+          initialPage: 1,
+          aspectRatio: 16 / 9,
+          animateToClosest: true,
+          disableCenter: false,
+          enlargeCenterPage: true,
+          enableInfiniteScroll: false,
+          viewportFraction: 0.56,
+          enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+          enlargeFactor: 0.46,
+          height: 280,
+          scrollDirection: Axis.horizontal,
+        ),
+        itemCount: movieModelList.length ?? 0,
+        itemBuilder: (context, index, realIndex) {
+          return MovieCard(
+            // height: 351,
+            // width: 234,
+            movieModel: movieModelList?[index],
+          );
+        });
+  }
 }

@@ -1,21 +1,18 @@
-import 'dart:math';
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/api_helper/api_helper.dart';
-import 'package:movies_app/features/home/data/models/movie_model.dart';
-import '../features/home/data/data_source/remote_data_source.dart';
-import '../features/home/data/models/movie_details_model.dart';
-import '../screen/home_screen/move_card.dart';
+
+import 'home_tab_down_bloc_builder_widget.dart';
+import 'home_tab_down_future_builder_widget.dart';
+import 'home_tab_up_future_builder_widget.dart';
 
 class HomeTabDown extends StatelessWidget {
   const HomeTabDown({super.key, this.movieId});
   final int? movieId;
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
@@ -37,11 +34,9 @@ class HomeTabDown extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 16),
-        HomeTabUpFutureBuilderWidget(),
-
-        
-
+        SizedBox(height: 16),
+        // HomeTabUpFutureBuilderWidget(),
+        HomeTabDownBlocBuilderWidget(),
       ],
     );
   }

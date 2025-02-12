@@ -1,14 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/api_helper/api_helper.dart';
-import 'package:movies_app/features/home/data/repositories/home_repo.dart';
-import 'package:movies_app/screen/home_screen/home_screen.dart';
-import 'package:movies_app/screen/movie_details_screen.dart';
+import 'package:movies_app/core/widgets/service_locator.dart';
+import 'package:movies_app/features/home/data/data_sources/movie_remote_data_source_imp.dart';
+import 'package:movies_app/features/home/data/repositories/movie_repo_imp.dart';
 import 'package:movies_app/screen/onboarding_screen.dart';
 import 'package:movies_app/screen/splash_screen.dart';
 
-void main()  {
-   ApiHelper().getMovieByGenre(28.toString());
+import 'features/home/presentation/screens/home_screen.dart';
+
+void main() async {
+   await setUpServiceLocator();
   // WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();
   runApp(
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           SplashScreen.tag: (context) => SplashScreen(),
           OnBoardingScreen.tag: (context) => OnBoardingScreen(),
           HomeScreen.tag: (context) => HomeScreen(),
-          MovieDetailsScreen.routeName: (context) => MovieDetailsScreen(),
+          // MovieDetailsScreen.routeName: (context) => MovieDetailsScreen(),
         },
         initialRoute: HomeScreen.tag
         // OnBoardingScreen.tag,

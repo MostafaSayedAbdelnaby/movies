@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'home_screen/home_screen.dart';
+import '../features/home/presentation/screens/home_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   static const tag = "OnBoardingScreen";

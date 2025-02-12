@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/api_helper/api_helper.dart';
 import 'package:movies_app/features/home/data/models/movie_model.dart';
-import 'package:movies_app/features/home/domain/entities/movie_entity.dart';
 import 'package:movies_app/screen/movie_details_screen.dart';
 
 class MovieCard extends StatelessWidget {
@@ -23,7 +21,7 @@ class MovieCard extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, MovieDetailsScreen.routeName, arguments: movieModel!.id);
+          // Navigator.pushNamed(context, MovieDetailsScreen.routeName, arguments: movieModel!.id);
         },
         child: Stack(
           alignment: Alignment.topLeft,
@@ -31,7 +29,7 @@ class MovieCard extends StatelessWidget {
             ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  'https://image.tmdb.org/t/p/w500/${movieEntity?.posterPath}',
+                  'https://image.tmdb.org/t/p/w500/${movieModel?.posterPath}',
                 ),
             ),
             Container(
@@ -47,7 +45,7 @@ class MovieCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    movieEntity?.voteAverage.toString() ?? '5.5',
+                    movieModel?.voteAverage.toString() ?? '5.5',
                     style: const TextStyle(color: Colors.white),
                   ),
                   const SizedBox(width: 4),

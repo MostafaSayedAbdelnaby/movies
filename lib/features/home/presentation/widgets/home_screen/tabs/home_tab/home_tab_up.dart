@@ -1,13 +1,7 @@
-import 'dart:math';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/api_helper/api_helper.dart';
-import 'package:movies_app/features/home/data/models/movie_model.dart';
-import 'package:movies_app/features/home/data/repositories/home_repo.dart';
-import 'package:movies_app/features/home/domain/entities/movie_entity.dart';
 
-import '../screen/home_screen/move_card.dart';
+import 'home_tab_up_bloc_builder_widget.dart';
+import 'home_tab_up_future_builder_widget.dart';
 
 class HomeTabUp extends StatelessWidget {
   const HomeTabUp({super.key});
@@ -45,7 +39,7 @@ class HomeTabUp extends StatelessWidget {
               'assets/images/Available Now.png',
             ),
             const SizedBox(height: 20),
-            HomeTabUpFutureBuilderWidget(),
+            HomeTabUpBlocBuilderWidget(),
             const SizedBox(height: 16),
             SizedBox(
               width: 300,
