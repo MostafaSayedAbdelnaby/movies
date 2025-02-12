@@ -31,7 +31,7 @@ class MovieCard extends StatelessWidget {
             ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  'https://image.tmdb.org/t/p/w500/${movieModel?.posterPath}',
+                  'https://image.tmdb.org/t/p/w500/${movieEntity?.posterPath}',
                 ),
             ),
             Container(
@@ -47,7 +47,7 @@ class MovieCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    movieModel?.voteAverage.toString() ?? '5.5',
+                    movieEntity?.voteAverage.toString() ?? '5.5',
                     style: const TextStyle(color: Colors.white),
                   ),
                   const SizedBox(width: 4),

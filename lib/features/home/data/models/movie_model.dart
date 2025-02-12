@@ -1,4 +1,4 @@
-import 'package:movies_app/features/home/domain/entities/movie_entity.dart';
+
 class MovieModel {
   bool? adult;
   String? backdropPath;

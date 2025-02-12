@@ -45,40 +45,7 @@ class HomeTabUp extends StatelessWidget {
               'assets/images/Available Now.png',
             ),
             const SizedBox(height: 20),
-            FutureBuilder<List<MovieModel>>(
-                future: ApiHelper().getWatchNowMovies(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text('E123: ${snapshot.error}'));
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Center(child: Text('No data available'));
-                  }
-                  return CarouselSlider.builder(
-                    options: CarouselOptions(
-                      initialPage: 1,
-                      aspectRatio: 16 / 9,
-                      animateToClosest: true,
-                      disableCenter: false,
-                      enlargeCenterPage: true,
-                      enableInfiniteScroll: false,
-                      viewportFraction: 0.56,
-                      enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                      enlargeFactor: 0.46,
-                      height: 280,
-                      scrollDirection: Axis.horizontal,
-                    ),
-                    itemCount: snapshot.data?.length ?? 0,
-                    itemBuilder: (context, index, realIndex) {
-                      return MovieCard(
-                        // height: 351,
-                        // width: 234,
-                        movieModel: snapshot.data?[index],
-                      );
-                    },
-                  );
-                }),
+            HomeTabUpFutureBuilderWidget(),
             const SizedBox(height: 16),
             SizedBox(
               width: 300,
