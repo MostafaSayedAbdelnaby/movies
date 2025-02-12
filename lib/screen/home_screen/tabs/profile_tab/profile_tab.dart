@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/features/home/data/models/movie_model.dart';
 import 'package:movies_app/screen/home_screen/tabs/profile_tab/profile_tab_bar.dart';
+import '../../../../api_helper/api_helper.dart';
 import '../../move_card.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -34,29 +36,33 @@ class ProfileTab extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 16.0, left: 16, top: 16),
-                child: CustomScrollView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  slivers: [
-                    SliverGrid(
-                      delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                          return MovieCard(
-                            // height: double.infinity,
-                            // width: double.infinity,
-                          );
-                        },
-                        childCount: 12,
-                      ),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisSpacing: 16,
-                          crossAxisSpacing: 16,
-                          childAspectRatio: 0.55 ,
-                          crossAxisCount: 3,
-                      ),
-                    ),
-                  ],
-                ),
+                padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+                child: FutureBuilder<List<MovieModel>>(
+                    future: ApiHelper().getWatchNowMovies(),
+                    builder: (context, snapshot) {
+                      return CustomScrollView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        slivers: [
+                          SliverGrid(
+                            delegate: SliverChildBuilderDelegate(
+                              (context, index) {
+                                return MovieCard(
+                                  movieModel: snapshot.data?[index],
+                                );
+                              },
+                              childCount: snapshot.data?.length,
+                            ),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              mainAxisSpacing: 16,
+                              crossAxisSpacing: 16,
+                              childAspectRatio: 0.55,
+                              crossAxisCount: 3,
+                            ),
+                          ),
+                        ],
+                      );
+                    }),
               ),
             ],
           ),

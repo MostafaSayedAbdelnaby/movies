@@ -13,68 +13,63 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-int currentIndex = 0;
-
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void dispose() {
-    currentIndex = 0;
-    super.dispose();
+  int currentIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      currentIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    var backgroundColor =const Color(0xFF202020);
     return Scaffold(
-      body: Stack(children: [
+      body: Stack(
+          children: [
         tabs[currentIndex],
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: const Color(0xFF202020), // Background color
+              margin: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(
+                color: Color(0xFF202020),
               ),
               child: BottomNavigationBar(
-                // backgroundColor: Colors.transparent,
+                backgroundColor: const Color(0xFF202020),
                 currentIndex: currentIndex,
-                onTap: (value) {
-                  setState(() {
-                    currentIndex = value;
-                  });
-                },
+                onTap: _onItemTapped,
                 items: [
                   BottomNavigationBarItem(
                     icon: _buildNavItem("home", isSelected: currentIndex == 0),
                     label: "",
-                    backgroundColor: const Color(0xFF202020),
+                    backgroundColor: backgroundColor,
                   ),
                   BottomNavigationBarItem(
                     icon:
                         _buildNavItem("search", isSelected: currentIndex == 1),
                     label: "",
-                    backgroundColor: const Color(0xFF202020),
+                    backgroundColor: backgroundColor,
                   ),
                   BottomNavigationBarItem(
                     icon:
                         _buildNavItem("explore", isSelected: currentIndex == 2),
                     label: "",
-                    backgroundColor: const Color(0xFF202020),
+                    backgroundColor: backgroundColor,
                   ),
                   BottomNavigationBarItem(
                     icon:
                         _buildNavItem("profile", isSelected: currentIndex == 3),
                     label: "",
-                    backgroundColor: const Color(0xFF202020),
+                    backgroundColor: backgroundColor,
                   ),
                 ],
-                selectedItemColor: const Color(0xFFF6BD00),
-                // Color for the selected item
-                unselectedItemColor: const Color(0xFFFFFFFF),
-                // Color for unselected items
-                showSelectedLabels: false,
-                // Hide labels
-                showUnselectedLabels: false,
+                // selectedItemColor: const Color(0xFFF6BD00),
+                // unselectedItemColor: const Color(0xFFFFFFFF),
+                // showSelectedLabels: false,
+                // showUnselectedLabels: false,
               ),
             ),
           ],
@@ -84,10 +79,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> tabs = [
-     HomeTab(),
-     SearchTab(),
-     ExploreTab(),
-     ProfileTab(),
+    HomeTab(),
+    SearchTab(),
+    ExploreTab(),
+    ProfileTab(),
   ];
 
   Widget _buildNavItem(String imageName, {required bool isSelected}) {
@@ -96,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
         shape: BoxShape.circle,
         color: isSelected ? Colors.yellow.withOpacity(0.2) : Colors.transparent,
       ),
-      padding: const EdgeInsets.all(8.0), // Padding around the icon
+      padding: const EdgeInsets.all(8.0),
       child: ImageIcon(
         AssetImage("assets/images/$imageName.png"),
         color: isSelected ? Colors.yellow : const Color(0xFFFFFFFF),

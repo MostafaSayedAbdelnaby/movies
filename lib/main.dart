@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/api_helper/api_helper.dart';
 import 'package:movies_app/features/home/data/repositories/home_repo.dart';
 import 'package:movies_app/screen/home_screen/home_screen.dart';
+import 'package:movies_app/screen/home_screen/tabs/profile_tab/update_profile.dart';
 import 'package:movies_app/screen/movie_details_screen.dart';
 import 'package:movies_app/screen/onboarding_screen.dart';
 import 'package:movies_app/screen/splash_screen.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           OnBoardingScreen.tag: (context) => OnBoardingScreen(),
           HomeScreen.tag: (context) => HomeScreen(),
           MovieDetailsScreen.routeName: (context) => MovieDetailsScreen(),
+          UpdateProfileScreen.tag: (context) => UpdateProfileScreen(),
         },
         initialRoute: HomeScreen.tag
         // OnBoardingScreen.tag,

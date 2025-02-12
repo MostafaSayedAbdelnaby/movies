@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'update_profile.dart';
+
 class ProfileTabBar extends StatelessWidget {
   const ProfileTabBar({super.key});
 
@@ -49,7 +51,8 @@ class ProfileTabBar extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFFFFFFFF)),
+                          color: Color(0xFFFFFFFF),
+                      ),
                     )
                   ],
                 ),
@@ -60,7 +63,8 @@ class ProfileTabBar extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 34,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFFFFFFFF)),
+                          color: Color(0xFFFFFFFF),
+                      ),
                     ),
                     SizedBox(
                       height: 20,
@@ -70,7 +74,8 @@ class ProfileTabBar extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFFFFFFFF)),
+                          color: Color(0xFFFFFFFF),
+                      ),
                     ),
                   ],
                 ),
@@ -89,7 +94,7 @@ class ProfileTabBar extends StatelessWidget {
                     flex: 2,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.pushNamed(context, PageRouteName.editProfile);
+                        Navigator.pushNamed(context, UpdateProfileScreen.tag);
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -98,7 +103,7 @@ class ProfileTabBar extends StatelessWidget {
                         ),
                         backgroundColor: const Color(0xFFF6BD00),
                       ),
-                      child: const Text('edit_profile',
+                      child: const Text('edit Profile',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w400,
