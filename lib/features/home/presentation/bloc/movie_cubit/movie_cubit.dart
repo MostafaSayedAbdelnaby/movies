@@ -30,4 +30,14 @@ class MovieCubit extends Cubit<MovieState> {
     }
   }
 
+  // Future<void> getUpcomingMovies() async {
+  //   emit(UpcomingMoviesLoadingState());
+  //   try{
+  //     var movieModelList = await movieRepo.getUpcomingMovies();
+  //     emit(UpcomingMoviesSuccessState(movieModelList));
+  //   }catch (e){
+  //     emit(UpcomingMoviesErrorState(e.toString()));
+  //   }
+  // }
+
 }

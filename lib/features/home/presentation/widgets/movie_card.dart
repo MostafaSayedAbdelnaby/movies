@@ -1,36 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/home/data/models/movie_model.dart';
-import 'package:movies_app/screen/movie_details_screen.dart';
+
+import '../../../movie_details/presentation/screen/movie_details_screen.dart';
 
 class MovieCard extends StatelessWidget {
- final MovieModel? movieModel;
+  final double height;
+  final double width;
+  final MovieModel? movieModel;
+
   const MovieCard({
     this.movieModel,
     super.key,
+    this.height = 220,
+    this.width = 146,
   });
 
   @override
   Widget build(BuildContext context) {
-   
     return Container(
-      height: 351,
-      width: 234,
+      height: height,
+      width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white
-      ),
+          borderRadius: BorderRadius.circular(20), color: Colors.white),
       child: GestureDetector(
         onTap: () {
-          // Navigator.pushNamed(context, MovieDetailsScreen.routeName, arguments: movieModel!.id);
+          Navigator.pushNamed(context, MovieDetailsScreen.tag,
+              arguments: movieModel!.id);
         },
         child: Stack(
           alignment: Alignment.topLeft,
           children: [
             ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  'https://image.tmdb.org/t/p/w500/${movieModel?.posterPath}',
-                ),
+              borderRadius: BorderRadius.circular(20),
+              child: Image.network(
+                'https://image.tmdb.org/t/p/w500/${movieModel?.posterPath}',
+              ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 12, right: 8, left: 8),
@@ -45,7 +49,7 @@ class MovieCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    movieModel?.voteAverage.toString() ?? '5.5',
+                    movieModel?.voteAverage.toString().substring(0, 3) ?? '5.5',
                     style: const TextStyle(color: Colors.white),
                   ),
                   const SizedBox(width: 4),

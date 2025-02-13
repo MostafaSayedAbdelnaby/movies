@@ -8,11 +8,12 @@ class HomeTabUpBlocBuilderWidget extends StatefulWidget {
   const HomeTabUpBlocBuilderWidget({super.key});
 
   @override
-  State<HomeTabUpBlocBuilderWidget> createState() => _HomeTabUpBlocBuilderWidgetState();
+  State<HomeTabUpBlocBuilderWidget> createState() =>
+      _HomeTabUpBlocBuilderWidgetState();
 }
 
-class _HomeTabUpBlocBuilderWidgetState extends State<HomeTabUpBlocBuilderWidget> {
-
+class _HomeTabUpBlocBuilderWidgetState
+    extends State<HomeTabUpBlocBuilderWidget> {
   @override
   void initState() {
     BlocProvider.of<MovieCubit>(context).getNowPlayingMovie();
@@ -22,6 +23,11 @@ class _HomeTabUpBlocBuilderWidgetState extends State<HomeTabUpBlocBuilderWidget>
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MovieCubit, MovieState>(
+      buildWhen: (previousState, currentState) {
+        return (currentState is MovieLoadingState ||
+            currentState is MovieErrorState ||
+            currentState is MovieSuccessState);
+      },
       builder: (context, state) {
         if (state is MovieLoadingState) {
           return const Center(
@@ -31,12 +37,13 @@ class _HomeTabUpBlocBuilderWidgetState extends State<HomeTabUpBlocBuilderWidget>
           return Center(
             child: Text(
               state.message,
-              style: TextStyle(color: Colors.white, fontSize: 36),
+              style: const TextStyle(color: Colors.white, fontSize: 36),
             ),
           );
         } else if (state is MovieSuccessState) {
           return HomeTabUpLoadedWidget(movieModelList: state.movieModelList);
         }
+        print(state.runtimeType);
         return const SizedBox();
       },
     );

@@ -19,7 +19,7 @@ class MovieRemoteDataSourceImp implements MovieRemoteDataSource {
         return MovieModel.fromJson(item);
       }).toList();
 
-      print(json);
+      // print(json);
       return movieModelList;
     } catch (e) {
       throw Exception(e);

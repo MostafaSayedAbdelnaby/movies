@@ -19,18 +19,18 @@ class HomeTabUpLoadedWidget extends StatelessWidget {
           disableCenter: false,
           enlargeCenterPage: true,
           enableInfiniteScroll: false,
-          viewportFraction: 0.56,
+          viewportFraction: 0.6,
           enlargeStrategy: CenterPageEnlargeStrategy.zoom,
           enlargeFactor: 0.46,
-          height: 280,
+          height: 300,
           scrollDirection: Axis.horizontal,
         ),
-        itemCount: movieModelList.length ?? 0,
+        itemCount: movieModelList.length ,
         itemBuilder: (context, index, realIndex) {
           return MovieCard(
-            // height: 351,
-            // width: 234,
-            movieModel: movieModelList?[index],
+            height: 300,
+            width: 200,
+            movieModel: movieModelList[index],
           );
         });
   }

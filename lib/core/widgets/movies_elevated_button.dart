@@ -4,7 +4,7 @@ class MoviesElevatedButton extends StatelessWidget{
    final Color backgroundColor;
    final Widget child;
    final VoidCallback onPressed;
-   MoviesElevatedButton({required this.backgroundColor,required this.child,required this.onPressed,super.key});
+   const MoviesElevatedButton({required this.backgroundColor,required this.child,required this.onPressed,super.key});
   @override
   Widget build(BuildContext context) {
     return SizedBox(width: double.infinity,

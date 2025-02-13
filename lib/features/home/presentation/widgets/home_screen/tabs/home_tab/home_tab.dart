@@ -13,7 +13,7 @@ class HomeTab extends StatelessWidget {
     return BlocProvider(
       create:(context) {
         // return MovieCubit(MovieRepoImp(MovieRemoteDataSourceImp()))..getNowPlayingMovie();
-        return serviceLocator<MovieCubit>();
+        return serviceLocator<MovieCubit>()..getNowPlayingMovie();
       } ,
       child: const Scaffold(
         backgroundColor: Color(0xFF171717),

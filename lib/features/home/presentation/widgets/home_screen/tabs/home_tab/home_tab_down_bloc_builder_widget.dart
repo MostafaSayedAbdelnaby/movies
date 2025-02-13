@@ -18,6 +18,7 @@ class _HomeTabDownBlocBuilderWidgetState extends State<HomeTabDownBlocBuilderWid
     BlocProvider.of<MovieCubit>(context).getUpcomingMovies();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MovieCubit, MovieState>(
