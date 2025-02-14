@@ -60,15 +60,16 @@ class MovieDetailWidget extends StatelessWidget {
                   children: [
                     RowItem(
                         imageName: 'vote_count',
-                        data: movieDetailsModel?.voteCount ?? 0),
+                        data: "${movieDetailsModel!.voteCount}"),
                     const SizedBox(width: 16),
                     RowItem(
                         imageName: 'run_time',
-                        data: movieDetailsModel?.runtime ?? 0),
+                        data: "${movieDetailsModel?.runtime}"),
                     const SizedBox(width: 16),
                     RowItem(
                         imageName: 'vote_average',
-                        data: movieDetailsModel?.voteAverage ?? 0),
+                        data:
+                            "${movieDetailsModel?.voteAverage.toString().substring(0, 3)}"),
                   ],
                 ),
                 const SizedBox(height: 16),

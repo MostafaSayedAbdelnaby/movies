@@ -7,6 +7,7 @@ import 'package:movies_app/features/movie_details/data/data_source/movie_details
 import 'package:movies_app/screen/onboarding_screen.dart';
 import 'package:movies_app/screen/splash_screen.dart';
 
+import 'core/theme/app_theme.dart';
 import 'features/home/presentation/screens/home_screen.dart';
 import 'features/movie_details/presentation/screen/movie_details_screen.dart';
 
@@ -31,11 +32,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: themeData,
         // localizationsDelegates: context.localizationDelegates,
         // supportedLocales: context.supportedLocales,
         // locale: context.locale,
         routes: AppRoutes.routes,
-        initialRoute: AppRoutes.homeScreenRoute
+        initialRoute: AppRoutes.loginRoute
         // AppRoutes.splashRoute
         );
   }
