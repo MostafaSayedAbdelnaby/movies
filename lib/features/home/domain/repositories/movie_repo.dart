@@ -1,3 +1,4 @@
+import 'package:movies_app/features/home/data/models/genre_model.dart';
 import 'package:movies_app/features/home/data/models/movie_model.dart';
 
 abstract class MovieRepo{
@@ -6,4 +7,6 @@ abstract class MovieRepo{
  Future<List<MovieModel>> getTopRatedMovies();
  Future<List<MovieModel>> searchMovies(String query);
  Future<List<MovieModel>> getMovieByGenre (String genre) ;
+ Future<List<GenreModel>> getGenre();
+
 }

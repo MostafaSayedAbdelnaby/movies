@@ -6,8 +6,8 @@ import '../core/widgets/movies_elevated_button.dart';
 import '../core/widgets/movies_text_form_field.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-
+   LoginScreen({super.key});
+   String login ="Ossama";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,11 +38,13 @@ class LoginScreen extends StatelessWidget {
           const SizedBox(height: 20),
           MoviesElevatedButton(
             backgroundColor: AppColors.primaryColor,
-            child: Text('Login',
+            child: Text(login,
                 style: textTheme.bodyMedium!
                     .copyWith(color: AppColors.textFormFieldBackgroundColor)),
             onPressed: () {
-              Navigator.pushNamed(context, AppRoutes.homeScreenRoute);
+             // Navigator.pushNamed(context, AppRoutes.homeScreenRoute);
+              login="Mostafa";
+              (context as Element).markNeedsBuild();
             },
           ),
           const SizedBox(height: 18),

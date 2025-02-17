@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/profile_tab/up_date_profile.dart';
+import 'package:movies_app/core/app_routes.dart';
 
 class ProfileTabBar extends StatelessWidget {
   const ProfileTabBar({super.key});
@@ -93,7 +93,7 @@ class ProfileTabBar extends StatelessWidget {
                     flex: 2,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, UpdateProfileScreen.tag);
+                        Navigator.pushNamed(context, AppRoutes.updateProfileScreenRoute);
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../explore_tab/explore_screen.dart';
+import '../../../../profile_tab/profile_tab_screen.dart';
+import '../widgets/home_screen/tabs/search_tab/search_tab.dart';
 import '../widgets/home_screen/tabs/home_tab/home_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -83,9 +86,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> tabs = [
      HomeTab(),
-     // SearchTab(),
-     // ExploreTab(),
-     // ProfileTab(),
+     SearchTab(),
+     ExploreTab(),
+     ProfileTab(),
   ];
 
   Widget _buildNavItem(String imageName, {required bool isSelected}) {

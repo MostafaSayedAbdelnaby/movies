@@ -1,3 +1,4 @@
+import 'package:movies_app/profile_tab/up_date_profile.dart';
 import 'package:movies_app/screen/register_screen.dart';
 
 import '../features/home/presentation/screens/home_screen.dart';
@@ -13,6 +14,7 @@ class AppRoutes {
   static const String splashRoute = "splashRoute";
   static const String registerRoute = "registerRoute";
   static const String loginRoute = "loginRoute";
+  static const String updateProfileScreenRoute = "updateProfileScreenRoute";
 
   static var routes = {
     splashRoute: (context) => SplashScreen(),
@@ -21,5 +23,6 @@ class AppRoutes {
     loginRoute: (context) => LoginScreen(),
     homeScreenRoute: (context) => HomeScreen(),
     movieDetailsRoute: (context) => MovieDetailsScreen(),
+    updateProfileScreenRoute: (context) => UpdateProfileScreen(),
   };
 }

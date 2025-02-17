@@ -1,6 +1,4 @@
 // import 'package:flutter/material.dart';
-// import '../features/home/data/models/movie_model.dart';
-// import '../features/home/presentation/widgets/movie_card.dart';
 //
 // class ExploreList extends StatelessWidget {
 //   final int genreId;

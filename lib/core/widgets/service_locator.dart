@@ -12,21 +12,35 @@ import '../../features/home/presentation/bloc/movie_cubit/movie_cubit.dart';
 
 final serviceLocator = di.GetIt.instance;
 
-// global
+// Global setup for the service locator
 
-Future<void> setUpServiceLocator()async {
-  //movie model
+Future<void> setUpServiceLocator() async {
   // registerSingleton means object create only once & dependency inversion
   serviceLocator.registerSingleton<MovieRemoteDataSource>(MovieRemoteDataSourceImp());
   serviceLocator.registerSingleton<MovieRepo>(MovieRepoImp(serviceLocator.get<MovieRemoteDataSource>()));
-      // serviceLocator.registerSingleton<NowPlayingUseCase>(NowPlayingUseCase().get<MovieRepo>());
-  // serviceLocator.registerSingleton(MovieCubit(serviceLocator.get<MovieRepo>()));
   serviceLocator.registerSingleton(MovieCubit(serviceLocator.get<MovieRepo>()));
 
   // MovieDetailsSingletons
-
-  serviceLocator.registerSingleton<MovieDetailsRemoteDataSource>(MovieDetailsRemoteDataSourceImp());
-  serviceLocator.registerSingleton<MovieDetailsRepo>(MovieDetailsRepoImp(serviceLocator.get<MovieDetailsRemoteDataSource>()));
-  serviceLocator.registerSingleton(MovieDetailsCubit(serviceLocator.get<MovieDetailsRepo>()));
-
+  serviceLocator.registerSingleton<MovieDetailsRemoteDataSource>(
+      MovieDetailsRemoteDataSourceImp());
+  serviceLocator.registerSingleton<MovieDetailsRepo>(
+      MovieDetailsRepoImp(serviceLocator.get<MovieDetailsRemoteDataSource>()));
+  serviceLocator.registerSingleton(
+      MovieDetailsCubit(serviceLocator.get<MovieDetailsRepo>()));
 }
+
+// final serviceLocator = di.GetIt.instance;
+//
+// // Global setup for the service locator
+// Future<void> setUpServiceLocator() async {
+//   // Movie model
+//   // Registering factories
+//   serviceLocator.registerFactory<MovieRemoteDataSource>(() => MovieRemoteDataSourceImp());
+//   serviceLocator.registerFactory<MovieRepo>(() => MovieRepoImp(serviceLocator.get<MovieRemoteDataSource>()));
+//   serviceLocator.registerFactory<MovieCubit>(() => MovieCubit(serviceLocator.get<MovieRepo>()));
+//
+//   // MovieDetailsSingletons
+//   serviceLocator.registerFactory<MovieDetailsRemoteDataSource>(() => MovieDetailsRemoteDataSourceImp());
+//   serviceLocator.registerFactory<MovieDetailsRepo>(() => MovieDetailsRepoImp(serviceLocator.get<MovieDetailsRemoteDataSource>()));
+//   serviceLocator.registerFactory<MovieDetailsCubit>(() => MovieDetailsCubit(serviceLocator.get<MovieDetailsRepo>()));
+// }

@@ -1,16 +1,17 @@
+import 'package:movies_app/features/home/data/models/genre_model.dart';
 import 'package:movies_app/features/home/data/models/movie_model.dart';
 
 abstract class MovieState{}
 class MovieInitState extends MovieState{}
 
-class MovieLoadingState extends MovieState{}
-class MovieSuccessState extends MovieState{
+class NowPlayingMovieLoadingState extends MovieState{}
+class NowPlayingMovieSuccessState extends MovieState{
   final List<MovieModel> movieModelList;
-  MovieSuccessState(this.movieModelList);
+  NowPlayingMovieSuccessState(this.movieModelList);
 }
-class MovieErrorState extends MovieState{
-  final String message;
-  MovieErrorState(this.message);
+class NowPlayingMovieErrorState extends MovieState{
+  final String error;
+  NowPlayingMovieErrorState(this.error);
 
 }
 
@@ -20,8 +21,8 @@ class UpcomingMoviesSuccessState extends MovieState {
   UpcomingMoviesSuccessState(this.movieModelList);
 }
 class UpcomingMoviesErrorState extends MovieState {
-  final String message;
-  UpcomingMoviesErrorState(this.message);
+  final String error;
+  UpcomingMoviesErrorState(this.error);
 }
 
 
@@ -31,26 +32,48 @@ class TopRateMoviesSuccessState extends MovieState {
   TopRateMoviesSuccessState(this.movieModelList);
 }
 class TopRateMoviesErrorState extends MovieState {
-  final String message;
-  TopRateMoviesErrorState(this.message);
+  final String error;
+  TopRateMoviesErrorState(this.error);
 }
 
 class SearchMoviesLoadingState extends MovieState {}
 class SearchMoviesSuccessState extends MovieState {
   final List<MovieModel> movieModelList;
-  SearchMoviesSuccessState(this.movieModelList);
+  SearchMoviesSuccessState({required this.movieModelList});
 }
 class SearchMoviesErrorState extends MovieState {
-  final String message;
-  SearchMoviesErrorState(this.message);
+  final String error;
+  SearchMoviesErrorState(this.error);
 }
 
-class ByGenreMoviesLoadingState extends MovieState {}
-class ByGenreMoviesSuccessState extends MovieState {
-  final List<MovieModel> movieModelList;
-  ByGenreMoviesSuccessState(this.movieModelList);
+// class ByGenreMoviesLoadingState extends MovieState {}
+// class ByGenreMoviesSuccessState extends MovieState {
+//   final List<MovieModel> movieModelList;
+//   ByGenreMoviesSuccessState(this.movieModelList);
+// }
+// class ByGenreMoviesErrorState extends MovieState {
+//   final String error;
+//   ByGenreMoviesErrorState(this.error);
+// }
+
+
+class GenreLoadingState extends MovieState {}
+class GenreSuccessState extends MovieState {
+  final List<GenreModel> genreModelList;
+  GenreSuccessState(this.genreModelList);
 }
-class ByGenreMoviesErrorState extends MovieState {
-  final String message;
-  ByGenreMoviesErrorState(this.message);
+class GenreErrorState extends MovieState {
+  final String error;
+  GenreErrorState(this.error);
+}
+
+
+class ExploreLoadingState extends MovieState {}
+class ExploreSuccessState extends MovieState {
+  final List<MovieModel> movieModelList;
+  ExploreSuccessState(this.movieModelList);
+}
+class ExploreErrorState extends MovieState {
+  final String error;
+  ExploreErrorState(this.error);
 }

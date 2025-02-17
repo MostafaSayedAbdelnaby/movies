@@ -4,6 +4,8 @@ import 'package:movies_app/features/home/presentation/bloc/movie_cubit/movie_cub
 import 'package:movies_app/features/home/presentation/bloc/movie_state/movie_state.dart';
 import 'package:movies_app/features/home/presentation/widgets/home_screen/tabs/home_tab/home_tab_up_loaded_widget.dart';
 
+import '../../../../../../../core/widgets/service_locator.dart';
+
 class HomeTabUpBlocBuilderWidget extends StatefulWidget {
   const HomeTabUpBlocBuilderWidget({super.key});
 
@@ -16,34 +18,37 @@ class _HomeTabUpBlocBuilderWidgetState
     extends State<HomeTabUpBlocBuilderWidget> {
   @override
   void initState() {
-    BlocProvider.of<MovieCubit>(context).getNowPlayingMovie();
+    // BlocProvider.of<MovieCubit>(context).getNowPlayingMovie();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MovieCubit, MovieState>(
+      bloc: serviceLocator<MovieCubit>(),
       buildWhen: (previousState, currentState) {
-        return (currentState is MovieLoadingState ||
-            currentState is MovieErrorState ||
-            currentState is MovieSuccessState);
+        return (currentState is NowPlayingMovieLoadingState ||
+            currentState is NowPlayingMovieSuccessState ||
+            currentState is NowPlayingMovieErrorState);
       },
       builder: (context, state) {
-        if (state is MovieLoadingState) {
+        if (state is NowPlayingMovieLoadingState) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is MovieErrorState) {
+        }
+        if (state is NowPlayingMovieErrorState) {
           return Center(
             child: Text(
-              state.message,
+              state.error,
               style: const TextStyle(color: Colors.white, fontSize: 36),
             ),
           );
-        } else if (state is MovieSuccessState) {
-          return HomeTabUpLoadedWidget(movieModelList: state.movieModelList);
+        } else if (state is NowPlayingMovieSuccessState){
+          return HomeTabUpLoadedWidget(
+              movieModelList:
+                  state.movieModelList);
         }
-        print(state.runtimeType);
         return const SizedBox();
       },
     );

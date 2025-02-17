@@ -1,19 +1,18 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/app_routes.dart';
 import 'package:movies_app/core/widgets/service_locator.dart';
-import 'package:movies_app/features/home/data/data_sources/movie_remote_data_source_imp.dart';
-import 'package:movies_app/features/home/data/repositories/movie_repo_imp.dart';
 import 'package:movies_app/features/movie_details/data/data_source/movie_details_remote_data_source_imp.dart';
-import 'package:movies_app/screen/onboarding_screen.dart';
-import 'package:movies_app/screen/splash_screen.dart';
-
+import 'core/bloc_observer.dart';
 import 'core/theme/app_theme.dart';
-import 'features/home/presentation/screens/home_screen.dart';
-import 'features/movie_details/presentation/screen/movie_details_screen.dart';
+import 'features/home/data/data_sources/movie_remote_data_source_imp.dart';
+import 'features/home/presentation/bloc/movie_cubit/movie_cubit.dart';
+
 
 void main() async {
    await setUpServiceLocator();
-   MovieDetailsRemoteDataSourceImp().getMovieDetails(939243);
+   Bloc.observer = MyBlocObserver();
+   serviceLocator<MovieCubit>().getMovieByGenre(28.toString());
   // WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();
   runApp(
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
         // supportedLocales: context.supportedLocales,
         // locale: context.locale,
         routes: AppRoutes.routes,
-        initialRoute: AppRoutes.loginRoute
+        initialRoute: AppRoutes.homeScreenRoute
         // AppRoutes.splashRoute
         );
   }

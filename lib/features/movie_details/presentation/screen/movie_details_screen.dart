@@ -6,7 +6,7 @@ import 'package:movies_app/features/movie_details/presentation/widgets/movie_det
 
 
 class MovieDetailsScreen extends StatelessWidget {
-  static const tag = '/movie-details-screen';
+  // static const tag = '/movie-details-screen';
   const MovieDetailsScreen({super.key});
 
   @override

@@ -15,11 +15,16 @@ const HomeTabDownLoadedWidget({super.key, required this.movieModelList});
                   animateToClosest: true,
                   enableInfiniteScroll: false,
                   disableCenter: true,
-                  viewportFraction: 0.52,
+                  viewportFraction: 0.48,
+                  enlargeFactor: 0.52,
+                  height: 300,
                   scrollDirection: Axis.horizontal),
               itemCount: movieModelList.length ?? 0,
               itemBuilder: (context, index, realIndex) {
-                return  MovieCard(movieModel:movieModelList?[index] ,);
+                return  MovieCard(
+                  height: 300,
+                  width: 200,
+                  movieModel:movieModelList?[index] ,);
               },
             );
 }
