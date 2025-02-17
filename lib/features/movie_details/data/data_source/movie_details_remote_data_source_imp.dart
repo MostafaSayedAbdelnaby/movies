@@ -21,4 +21,23 @@ class MovieDetailsRemoteDataSourceImp extends MovieDetailsRemoteDataSource {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<List<String>> getMovieDetailsScreenShots(int movieId) async {
+    var uri = Uri.https(AppConstant.BASE_URL, "/3/movie/$movieId/images", {});
+
+    try {
+      var response =
+          await http.get(uri, headers: {"Authorization": AppConstant.API_KEY});
+      var data = response.body;
+      var json = jsonDecode(data);
+      var movieDetailsScreenShotsPath = (json["backdrops"] as List).map((item) {
+        return item["file_path"] as String;
+      }).toList();
+      print(movieDetailsScreenShotsPath);
+      return movieDetailsScreenShotsPath;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

@@ -27,7 +27,7 @@ class _GenreWidgetState extends State<GenreWidget> {
                   currentIndex = index;
                 });
                 serviceLocator<MovieCubit>()
-                    .getMovieByGenre(currentIndex.toString());
+                    .getMovieByGenre(widget.genreModelList[index].id.toString());
               },
               child: CategoryItem(
                   isSelected: currentIndex == index,

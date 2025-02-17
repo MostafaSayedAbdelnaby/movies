@@ -51,16 +51,16 @@ class HomeTab extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return const Scaffold(
-          backgroundColor: Color(0xFF171717),
+        return Scaffold(
+          backgroundColor: const Color(0xFF171717),
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   HomeTabUp(),
-                  SizedBox(height: 22),
-                  HomeTabDown(),
-                  SizedBox(height: 22),
+                  const SizedBox(height: 22),
+                  const HomeTabDown(),
+                  const SizedBox(height: 22),
                 ],
               ),
             ),

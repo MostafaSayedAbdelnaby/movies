@@ -8,28 +8,27 @@ class MoviesTextFormField extends StatelessWidget {
   final String prefixIconImageName;
   final String labelText;
   final String? suffixIconImageName;
+  final Function? onTap;
+  final TextEditingController? textEditingController;
 
-  MoviesTextFormField({
+  const MoviesTextFormField({
     required this.labelText,
     this.suffixIconImageName,
     super.key,
     required this.prefixIconImageName,
+    this.onTap, this.textEditingController,
     //required this.prefixIcon
   });
 
-  var textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: textController,
+      controller: textEditingController,
       autocorrect: true,
       style: textTheme.headlineSmall,
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter some text';
-        }
-        return null; // return null if the input is valid
+        onTap!();
       },
       decoration: InputDecoration(
         fillColor: AppColors.textFormFieldBackgroundColor,

@@ -56,10 +56,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 ),
               ),
             ),
-            MoviesTextFormField(
+            const MoviesTextFormField(
                 labelText: "name", prefixIconImageName: "person"),
             const SizedBox(height: 16),
-            MoviesTextFormField(
+            const MoviesTextFormField(
                 labelText: "phone", prefixIconImageName: "phone"),
             const SizedBox(height: 30),
             const Text(

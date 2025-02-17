@@ -5,14 +5,13 @@ import 'package:movies_app/core/widgets/service_locator.dart';
 import 'package:movies_app/features/movie_details/data/data_source/movie_details_remote_data_source_imp.dart';
 import 'core/bloc_observer.dart';
 import 'core/theme/app_theme.dart';
-import 'features/home/data/data_sources/movie_remote_data_source_imp.dart';
-import 'features/home/presentation/bloc/movie_cubit/movie_cubit.dart';
+
 
 
 void main() async {
    await setUpServiceLocator();
    Bloc.observer = MyBlocObserver();
-   serviceLocator<MovieCubit>().getMovieByGenre(28.toString());
+   MovieDetailsRemoteDataSourceImp().getMovieDetailsScreenShots(939243);
   // WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();
   runApp(

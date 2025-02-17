@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
-import '../core/app_routes.dart';
-import '../core/theme/app_text_theme.dart';
-import '../core/widgets/app_colors.dart';
-import '../core/widgets/movies_elevated_button.dart';
-import '../core/widgets/movies_text_form_field.dart';
+import '../../../../core/app_routes.dart';
+import '../../../../core/theme/app_text_theme.dart';
+import '../../../../core/widgets/app_colors.dart';
+import '../../../../core/widgets/movies_elevated_button.dart';
+import '../../../../core/widgets/movies_text_form_field.dart';
 
+// ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
-   LoginScreen({super.key});
-   String login ="Ossama";
+  LoginScreen({super.key});
+
+  String login = "Ossama";
+
+  final nameController = TextEditingController();
+
+  final emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,14 +27,36 @@ class LoginScreen extends StatelessWidget {
           SizedBox(
               height: 300, child: Image.asset("assets/images/play_login.png")),
           MoviesTextFormField(
+            textEditingController: nameController,
             prefixIconImageName: 'email',
             labelText: 'Email',
+            onTap: (value) {
+              if (value == null || value.isEmpty) {
+                return 'please_enter_your_email';
+              }
+              final emailRegex =
+                  RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+              if (!emailRegex.hasMatch(value)) {
+                return 'please_enter_valid_email';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 20),
           MoviesTextFormField(
+            textEditingController: emailController,
             prefixIconImageName: 'password',
             labelText: 'password',
-            suffixIconImageName: 'show_password', // convert to Icons
+            suffixIconImageName: 'show_password',
+            onTap: (value) {
+              if (value == null || value.isEmpty) {
+                return 'please_enter_password';
+              }
+              if (value.length < 8) {
+                return 'password_must_be_8_characters';
+              }
+              return null;
+            }, // convert to Icons
           ),
           const SizedBox(height: 16),
           Text(
@@ -42,8 +71,8 @@ class LoginScreen extends StatelessWidget {
                 style: textTheme.bodyMedium!
                     .copyWith(color: AppColors.textFormFieldBackgroundColor)),
             onPressed: () {
-             // Navigator.pushNamed(context, AppRoutes.homeScreenRoute);
-              login="Mostafa";
+              // Navigator.pushNamed(context, AppRoutes.homeScreenRoute);
+              login = "Mostafa";
               (context as Element).markNeedsBuild();
             },
           ),
@@ -85,7 +114,8 @@ class LoginScreen extends StatelessWidget {
                   endIndent: 20,
                   indent: 20,
                 ),
-              ),            ],
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           MoviesElevatedButton(

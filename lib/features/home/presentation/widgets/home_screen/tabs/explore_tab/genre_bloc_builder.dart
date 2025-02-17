@@ -18,17 +18,12 @@ class GenreBlocBuilder extends StatelessWidget {
       },
         builder: (context, state) {
           if (state is GenreLoadingState){
-            print("object");
             return const Center(child: CircularProgressIndicator(),);
           }
           if(state is GenreErrorState){
-            print("object  object ");
             return const Center(child: Text("Error"),);
           }
           else if (state is GenreSuccessState){
-            print(state.genreModelList[0].id.toString());
-            // serviceLocator<MovieCubit>().getMovieByGenre(state.genreModelList[0].id.toString());
-            print("Samy");
             return GenreWidget(genreModelList: state.genreModelList);
           }
           return const SizedBox();

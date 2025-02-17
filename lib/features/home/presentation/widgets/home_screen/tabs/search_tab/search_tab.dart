@@ -16,39 +16,36 @@ class _SearchTabState extends State<SearchTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 14),
-        child: SafeArea(
-          child: Container(
-            color: const Color(0xFF171717),
+      body: SafeArea(
+        child: Container(
+          color: const Color(0xFF171717),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14,vertical: 12),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: TextField(
-                    controller: controller,
-                    autofocus: true,
-                    onTap: () {
-                    serviceLocator<MovieCubit>().searchMovies(controller.text);
-                    },
-                    style: const TextStyle(color: Color(0xFFFFFFFF)),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xFF303030),
-                      hintText: 'Search',
-                      hintStyle: const TextStyle(color: Color(0xFFFFFFFF)),
-                      prefixIcon: Image.asset(
-                        "assets/images/search.png",
-                        color: const Color(0xFFFFFFFF),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide.none,
-                      ),
+                TextField(
+                  controller: controller,
+                  autofocus: true,
+                  onTap: () {
+                  serviceLocator<MovieCubit>().searchMovies(controller.text);
+                  },
+                  style: const TextStyle(color: Color(0xFFFFFFFF)),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xFF303030),
+                    hintText: 'Search',
+                    hintStyle: const TextStyle(color: Color(0xFFFFFFFF)),
+                    prefixIcon: Image.asset(
+                      "assets/images/search.png",
+                      color: const Color(0xFFFFFFFF),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                      borderSide: BorderSide.none,
                     ),
                   ),
                 ),
+                const SizedBox(height: 12),
                 Expanded(
                   child: SearchTabBlocBuilder() ,
                 ),

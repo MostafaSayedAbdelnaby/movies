@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/app_routes.dart';
 import 'package:movies_app/widgets/avatar_Carousel_widget.dart';
-import '../core/theme/app_text_theme.dart';
-import '../core/widgets/app_colors.dart';
-import '../core/widgets/movies_elevated_button.dart';
-import '../core/widgets/movies_text_form_field.dart';
+import '../../../../core/theme/app_text_theme.dart';
+import '../../../../core/widgets/app_colors.dart';
+import '../../../../core/widgets/movies_elevated_button.dart';
+import '../../../../core/widgets/movies_text_form_field.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -15,6 +15,15 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  final rePasswordController = TextEditingController();
+
+  final phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Form(
             key: formKey,
             child: Column(children: [
-              AvatarCarouselWidget(),
+              const AvatarCarouselWidget(),
               Text(
                 "Avatar",
                 textAlign: TextAlign.center,
@@ -37,28 +46,82 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 10),
               MoviesTextFormField(
+                textEditingController: nameController,
                 prefixIconImageName: 'name',
                 labelText: 'Name',
+                onTap: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'please_enter_name';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               MoviesTextFormField(
+                textEditingController: emailController,
                 prefixIconImageName: 'email',
                 labelText: 'Email',
+                onTap: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'please_enter_email';
+                  }
+                  final emailRegex = RegExp(
+                      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+                  if (!emailRegex.hasMatch(value)) {
+                    return 'please_enter_valid_email';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               MoviesTextFormField(
+                textEditingController: passwordController,
                 prefixIconImageName: 'password',
                 labelText: 'password',
                 suffixIconImageName: 'show_password',
+                onTap: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'please_enter_password';
+                  }
+                  if (value.length < 8) {
+                    return 'password_must_be_8_characters';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               MoviesTextFormField(
+                textEditingController: rePasswordController,
                 prefixIconImageName: 'password',
                 labelText: 'Confirm Password',
                 suffixIconImageName: 'show_password',
+                onTap: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'must_reenter_password';
+                  }
+                  if (value.length < 8) {
+                    return 'password_must_be_8_characters';
+                  }
+                  if (passwordController.text != value) {
+                    return 'passwords_do_not_match';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               MoviesTextFormField(
+                textEditingController: phoneNumberController,
+                onTap: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'enter_phone_number';
+                  }
+                  final phoneRegex =
+                  RegExp(r'^(?:\+20|0)?1[0-2,5]{1}[0-9]{8}$');
+                  if (!phoneRegex.hasMatch(value)) {
+                    return 'please_enter_a_valid_phone_number';
+                  }
+                  return null;
+                },
                 prefixIconImageName: 'phone',
                 labelText: 'Phone',
               ),
@@ -94,9 +157,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20
-              ),
+              const SizedBox(height: 20),
             ]),
           ),
         ),

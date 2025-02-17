@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/features/home/data/models/movie_model.dart';
-import 'package:movies_app/profile_tab/profile_tab_bar.dart';
-import '../core/widgets/service_locator.dart';
-import '../features/home/presentation/bloc/movie_cubit/movie_cubit.dart';
+import 'package:movies_app/features/home/presentation/widgets/home_screen/tabs/profile_tab/profile_tab_bar.dart';
+import '../../../../../../../core/widgets/service_locator.dart';
+import '../../../../bloc/movie_cubit/movie_cubit.dart';
+
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({super.key});

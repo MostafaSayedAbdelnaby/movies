@@ -9,10 +9,10 @@ TextStyle headlineSmall = GoogleFonts.inter(
     fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.textColor);
 
 TextStyle bodyMedium = GoogleFonts.inter(
-    fontSize: 20, fontWeight: FontWeight.w500, color: AppColors.textColor);
+    fontSize: 20, fontWeight: FontWeight.w700, color: AppColors.textColor);
 
 TextStyle bodyLarge = GoogleFonts.inter(
-    fontSize: 24, fontWeight: FontWeight.w500, color: AppColors.textColor);
+    fontSize: 24, fontWeight: FontWeight.w700, color: AppColors.textColor);
 
 TextStyle labelMedium = GoogleFonts.inter(
     fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.primaryColor);

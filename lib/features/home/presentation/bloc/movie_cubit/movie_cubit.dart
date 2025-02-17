@@ -5,8 +5,15 @@ import '../movie_state/movie_state.dart';
 class MovieCubit extends Cubit<MovieState> {
 // final NowPlayingUseCase nowPlayingUseCase;
   final MovieRepo movieRepo;
+  // int currentIndex = 0;
 
   MovieCubit(this.movieRepo) : super(MovieInitState());
+
+
+  setBackgroundImage(int index){
+   // currentIndex=index;
+   emit(BackgroundImageState(index));
+  }
 
   Future<void> getNowPlayingMovie() async {
     emit(NowPlayingMovieLoadingState());

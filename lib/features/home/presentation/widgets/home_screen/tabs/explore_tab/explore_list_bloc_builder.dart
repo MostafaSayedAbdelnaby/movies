@@ -11,27 +11,22 @@ class ExploreListBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Ali");
     return BlocBuilder(
       bloc: serviceLocator<MovieCubit>()..getMovieByGenre(28.toString()),
       buildWhen: (previous, current) {
-        print(current.runtimeType);
         return (current is ExploreLoadingState || current is ExploreErrorState || current is ExploreSuccessState);
       },
       builder: (context, state) {
         if (state is ExploreLoadingState) {
-          print("Print");
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
         if (state is ExploreErrorState) {
-          print("Print Print");
           return const Center(
             child: Text("Error"),
           );
         } else if (state is ExploreSuccessState) {
-          print("Print Print Print");
           return ExploreListWidget(
             movieModelList: state.movieModelList,
           );

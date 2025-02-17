@@ -22,7 +22,7 @@ class MovieDetailsBloBuilder extends StatelessWidget {
         return const Center(
           child: CircularProgressIndicator(),
         );
-      } else if (state is MovieDetailsErrorState) {
+      } if (state is MovieDetailsErrorState) {
         return Center(child: Text(state.message));
       } else if (state is MovieDetailsSuccessState) {
         return MovieDetailWidget(movieDetailsModel: state.movieDetailsModel);

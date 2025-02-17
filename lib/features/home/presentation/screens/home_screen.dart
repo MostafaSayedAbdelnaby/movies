@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:movies_app/core/widgets/app_colors.dart';
 import '../../../../explore_tab/explore_screen.dart';
-import '../../../../profile_tab/profile_tab_screen.dart';
+import '../widgets/home_screen/tabs/profile_tab/profile_tab_screen.dart';
 import '../widgets/home_screen/tabs/search_tab/search_tab.dart';
 import '../widgets/home_screen/tabs/home_tab/home_tab.dart';
 
@@ -34,10 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: const Color(0xFF202020), // Background color
+                color: AppColors.blackColor, // Background color
               ),
               child: BottomNavigationBar(
-                // backgroundColor: Colors.transparent,
                 currentIndex: currentIndex,
                 onTap: (value) {
                   setState(() {
@@ -48,30 +47,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   BottomNavigationBarItem(
                     icon: _buildNavItem("home", isSelected: currentIndex == 0),
                     label: "",
-                    backgroundColor: const Color(0xFF202020),
+                    backgroundColor: AppColors.blackColor,
                   ),
                   BottomNavigationBarItem(
                     icon:
                         _buildNavItem("search", isSelected: currentIndex == 1),
                     label: "",
-                    backgroundColor: const Color(0xFF202020),
+                    backgroundColor: AppColors.blackColor,
                   ),
                   BottomNavigationBarItem(
                     icon:
                         _buildNavItem("explore", isSelected: currentIndex == 2),
                     label: "",
-                    backgroundColor: const Color(0xFF202020),
+                    backgroundColor: AppColors.blackColor,
                   ),
                   BottomNavigationBarItem(
                     icon:
                         _buildNavItem("profile", isSelected: currentIndex == 3),
                     label: "",
-                    backgroundColor: const Color(0xFF202020),
+                    backgroundColor: AppColors.blackColor,
                   ),
                 ],
-                selectedItemColor: const Color(0xFFF6BD00),
+                selectedItemColor: AppColors.primaryColor,
                 // Color for the selected item
-                unselectedItemColor: const Color(0xFFFFFFFF),
+                unselectedItemColor: AppColors.textColor,
                 // Color for unselected items
                 showSelectedLabels: false,
                 // Hide labels
@@ -95,12 +94,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isSelected ? Colors.yellow.withOpacity(0.2) : Colors.transparent,
+        color: isSelected ? AppColors.primaryColor.withOpacity(0.2) : Colors.transparent,
       ),
       padding: const EdgeInsets.all(8.0), // Padding around the icon
       child: ImageIcon(
         AssetImage("assets/images/$imageName.png"),
-        color: isSelected ? Colors.yellow : const Color(0xFFFFFFFF),
+        color: isSelected ? AppColors.primaryColor : AppColors.textColor,
       ),
     );
   }

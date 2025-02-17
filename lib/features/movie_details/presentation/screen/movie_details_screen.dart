@@ -6,7 +6,6 @@ import 'package:movies_app/features/movie_details/presentation/widgets/movie_det
 
 
 class MovieDetailsScreen extends StatelessWidget {
-  // static const tag = '/movie-details-screen';
   const MovieDetailsScreen({super.key});
 
   @override
@@ -16,7 +15,7 @@ class MovieDetailsScreen extends StatelessWidget {
      create: (context) {
        return serviceLocator<MovieDetailsCubit>()..getMovieDetails(movieId);
      },
-     child: MovieDetailsBloBuilder()
+     child: const MovieDetailsBloBuilder()
    );
   }
 }
