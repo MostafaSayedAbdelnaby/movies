@@ -11,7 +11,7 @@ import 'core/theme/app_theme.dart';
 void main() async {
    await setUpServiceLocator();
    Bloc.observer = MyBlocObserver();
-   MovieDetailsRemoteDataSourceImp().getMovieDetailsScreenShots(939243);
+   // MovieDetailsRemoteDataSourceImp().getMovieDetailsScreenShots(939243);
   // WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();
   runApp(

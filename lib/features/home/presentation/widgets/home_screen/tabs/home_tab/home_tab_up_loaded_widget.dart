@@ -9,7 +9,8 @@ import '../../../movie_card.dart';
 class HomeTabUpLoadedWidget extends StatelessWidget {
   final List<MovieModel> movieModelList;
 
-   const HomeTabUpLoadedWidget({super.key, required this.movieModelList});
+  const HomeTabUpLoadedWidget({super.key, required this.movieModelList});
+
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
@@ -26,7 +27,8 @@ class HomeTabUpLoadedWidget extends StatelessWidget {
           height: 300,
           scrollDirection: Axis.horizontal,
           onPageChanged: (index, reason) {
-            serviceLocator<MovieCubit>().setBackgroundImage(index);
+            serviceLocator<MovieCubit>()
+                .setBackgroundImage(movieModelList[index].posterPath ?? "");
           },
         ),
         itemCount: movieModelList.length,

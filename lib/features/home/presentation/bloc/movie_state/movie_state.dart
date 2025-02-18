@@ -107,6 +107,7 @@ class ExploreErrorState extends MovieState {
 
 // BackgroundImageSetState
 class BackgroundImageState extends MovieState {
-  int currentIndex;
-  BackgroundImageState(this.currentIndex);
+  // int currentIndex;
+  String imagePath;
+  BackgroundImageState(this.imagePath);
 }

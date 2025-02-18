@@ -17,6 +17,15 @@ class MovieDetailsRepoImp extends MovieDetailsRepo {
     }
   }
 
+  @override
+  Future<List<String>> getMovieDetailsScreenShots(int movieId) async{
+    try {
+      return await movieDetailsRemoteDataSource.getMovieDetailsScreenShots(movieId);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
 
 
 }

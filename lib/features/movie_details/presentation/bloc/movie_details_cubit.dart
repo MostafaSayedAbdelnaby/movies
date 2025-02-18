@@ -10,6 +10,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
 
   MovieDetailsCubit(this.movieDetailsRepo) : super(MovieDetailsInitial());
 
+  // method of getMovieDetails
   Future<void> getMovieDetails(int movieId) async {
     emit(MovieDetailsLoadingState());
 
@@ -20,4 +21,18 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
       emit(MovieDetailsErrorState(e.toString()));
     }
   }
+
+  // method of getMovieDetailsScreenShots
+  Future<void> getMovieDetailsScreenShots(int movieId) async {
+    emit(MovieDetailsScreenShotsLoadingState());
+    try {
+      var movieDetailsScreenShotsPath =
+          await movieDetailsRepo.getMovieDetailsScreenShots(movieId);
+      emit(MovieDetailsScreenShotsSuccessState(movieDetailsScreenShotsPath));
+    } catch (e) {
+      emit(MovieDetailsScreenShotsErrorState(e.toString()));
+    }
+  }
+
+
 }

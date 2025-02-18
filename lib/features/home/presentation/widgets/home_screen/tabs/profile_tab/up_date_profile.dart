@@ -39,7 +39,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
               child: GestureDetector(
                 onTap: () async {
                   return await showDialog(
-                      barrierDismissible: true,
+                      // barrierDismissible: true,
                       context: context,
                       builder: (context) {
                         return AvatarImages(avatarSelected: _updateAvatarIndex);

@@ -10,9 +10,9 @@ class MovieCubit extends Cubit<MovieState> {
   MovieCubit(this.movieRepo) : super(MovieInitState());
 
 
-  setBackgroundImage(int index){
+  setBackgroundImage(String imagePath){
    // currentIndex=index;
-   emit(BackgroundImageState(index));
+   emit(BackgroundImageState(imagePath));
   }
 
   Future<void> getNowPlayingMovie() async {

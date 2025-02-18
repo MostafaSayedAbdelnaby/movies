@@ -3,6 +3,7 @@ import '../features/home/presentation/screens/home_screen.dart';
 import '../features/home/presentation/widgets/home_screen/tabs/profile_tab/up_date_profile.dart';
 import '../features/movie_details/presentation/screen/movie_details_screen.dart';
 import '../features/auth/presentation/screens/login_screen.dart';
+import '../features/movie_details/presentation/widgets/test_screen_shots.dart';
 import '../screen/onboarding_screen.dart';
 import '../screen/splash_screen.dart';
 
@@ -14,9 +15,12 @@ class AppRoutes {
   static const String registerRoute = "registerRoute";
   static const String loginRoute = "loginRoute";
   static const String updateProfileScreenRoute = "updateProfileScreenRoute";
+  static const String testScreenShotsRoute = "TestScreenShots";
 
   static var routes = {
     splashRoute: (context) => const SplashScreen(),
+    testScreenShotsRoute: (context) => const TestScreenShots(),
+
     onBoardingRoute: (context) => const OnBoardingScreen(),
     registerRoute: (context) => const RegisterScreen(),
     loginRoute: (context) => LoginScreen(),
