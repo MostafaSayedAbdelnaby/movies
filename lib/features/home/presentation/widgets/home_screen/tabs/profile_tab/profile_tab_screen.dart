@@ -5,15 +5,15 @@ import '../../../../../../../core/widgets/service_locator.dart';
 import '../../../../bloc/movie_cubit/movie_cubit.dart';
 
 
-class ProfileTab extends StatelessWidget {
-  const ProfileTab({super.key});
+class ProfileTabScreen extends StatelessWidget {
+  const ProfileTabScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: const Color(0xFF121312),
+        // backgroundColor: const Color(0xFF121312),
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
@@ -38,7 +38,8 @@ class ProfileTab extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
-                child: BlocProvider(
+                child:
+                BlocProvider(
                     create: (context) {
                       return serviceLocator<MovieCubit>()..getNowPlayingMovie();
                     },

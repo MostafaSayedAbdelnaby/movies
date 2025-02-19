@@ -27,7 +27,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
     emit(MovieDetailsScreenShotsLoadingState());
     try {
       var movieDetailsScreenShotsPath =
-          await movieDetailsRepo.getMovieDetailsScreenShots(movieId);
+      await movieDetailsRepo.getMovieDetailsScreenShots(movieId);
       emit(MovieDetailsScreenShotsSuccessState(movieDetailsScreenShotsPath));
     } catch (e) {
       emit(MovieDetailsScreenShotsErrorState(e.toString()));

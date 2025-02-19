@@ -87,7 +87,9 @@ class MovieRemoteDataSourceImp implements MovieRemoteDataSource {
     }
   }
 
+
   //get movie by genre
+  // int genreId
   @override
   Future<List<MovieModel>> getMovieByGenre(String genre) async {
     var uri = Uri.https(AppConstant.BASE_URL, "3/discover/movie", {

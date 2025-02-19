@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MoviesElevatedButton extends StatelessWidget {
-  final Color backgroundColor;
+  final Color color;
   final Widget child;
   final VoidCallback onPressed;
 
   const MoviesElevatedButton(
-      {required this.backgroundColor,
+      {required this.color,
       required this.child,
       required this.onPressed,
       super.key});
@@ -18,13 +18,14 @@ class MoviesElevatedButton extends StatelessWidget {
       child: SizedBox(
         height: 56,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: backgroundColor,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-              ),
-          ),
           onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            // padding: const EdgeInsets.symmetric(vertical: 12),
+            backgroundColor: color,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
           child: child,
         ),
       ),

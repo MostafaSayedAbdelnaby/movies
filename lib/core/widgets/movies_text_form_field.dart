@@ -28,7 +28,7 @@ class MoviesTextFormField extends StatelessWidget {
       autocorrect: true,
       style: textTheme.headlineSmall,
       validator: (value) {
-        onTap!();
+        return null;
       },
       decoration: InputDecoration(
         fillColor: AppColors.textFormFieldBackgroundColor,

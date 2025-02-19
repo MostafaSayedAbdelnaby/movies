@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../../../core/app_routes.dart';
-import '../../../../core/theme/app_text_theme.dart';
-import '../../../../core/widgets/app_colors.dart';
-import '../../../../core/widgets/movies_elevated_button.dart';
-import '../../../../core/widgets/movies_text_form_field.dart';
+import '../../../../../core/app_routes.dart';
+import '../../../../../core/theme/app_text_theme.dart';
+import '../../../../../core/widgets/app_colors.dart';
+import '../../../../../core/widgets/movies_elevated_button.dart';
+import '../../../../../core/widgets/movies_text_form_field.dart';
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-
-  String login = "Ossama";
-
   final nameController = TextEditingController();
-
   final emailController = TextEditingController();
 
   @override
@@ -66,14 +62,14 @@ class LoginScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           MoviesElevatedButton(
-            backgroundColor: AppColors.primaryColor,
-            child: Text(login,
+            color: AppColors.primaryColor,
+            child: Text(
+                "login",
                 style: textTheme.bodyMedium!
                     .copyWith(color: AppColors.textFormFieldBackgroundColor)),
             onPressed: () {
-              // Navigator.pushNamed(context, AppRoutes.homeScreenRoute);
-              login = "Mostafa";
-              (context as Element).markNeedsBuild();
+              Navigator.pushNamed(context, AppRoutes.homeScreenRoute);
+
             },
           ),
           const SizedBox(height: 18),
@@ -119,7 +115,7 @@ class LoginScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           MoviesElevatedButton(
-            backgroundColor: AppColors.primaryColor,
+            color: AppColors.primaryColor,
             onPressed: () {},
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

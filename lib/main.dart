@@ -1,18 +1,20 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/app_routes.dart';
 import 'package:movies_app/core/widgets/service_locator.dart';
-import 'package:movies_app/features/movie_details/data/data_source/movie_details_remote_data_source_imp.dart';
 import 'core/bloc_observer.dart';
 import 'core/theme/app_theme.dart';
+import 'firebase_options.dart';
 
 
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
    await setUpServiceLocator();
    Bloc.observer = MyBlocObserver();
+   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
    // MovieDetailsRemoteDataSourceImp().getMovieDetailsScreenShots(939243);
-  // WidgetsFlutterBinding.ensureInitialized();
   // await EasyLocalization.ensureInitialized();
   runApp(
       // EasyLocalization(
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         // supportedLocales: context.supportedLocales,
         // locale: context.locale,
         routes: AppRoutes.routes,
-        initialRoute: AppRoutes.homeScreenRoute
+        initialRoute: AppRoutes.loginRoute
         // AppRoutes.splashRoute
         );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/app_routes.dart';
 import 'package:movies_app/core/theme/app_text_theme.dart';
 import 'package:movies_app/features/movie_details/presentation/widgets/row_item.dart';
 import '../../../../core/widgets/app_colors.dart';
@@ -51,17 +52,19 @@ class MovieDetailWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Image.asset("assets/icons/icon_arrow_back.png"),
-                  ),
-                  GestureDetector(
-                      onTap: () {},
-                      child: Image.asset("assets/icons/icon_save.png"))
-                ]),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset("assets/icons/icon_arrow_back.png"),
+                      ),
+                      GestureDetector(
+                          onTap: () {},
+                          child: Image.asset("assets/icons/icon_save.png"))
+                    ]),
                 // const Spacer(
                 //   flex: 1,
                 // ),
@@ -81,9 +84,12 @@ class MovieDetailWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 MoviesElevatedButton(
-                    backgroundColor: AppColors.redColor,
+                    color: AppColors.redColor,
                     child: Text('Watch', style: textTheme.bodyMedium),
-                    onPressed: () {}),
+                    onPressed: () {
+                      /// ************************************************************* Dr , sent list
+                      Navigator.pushNamed(context, AppRoutes.profileTabScreenRoute,arguments: movieDetailsModel?.genres);
+                    }),
                 const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,9 +112,7 @@ class MovieDetailWidget extends StatelessWidget {
                 Text('Screen Shots', style: textTheme.bodyLarge),
                 const SizedBox(height: 12),
                 const SizedBox(
-                    height: 400,
-                    child: MovieDetailsScreenShotsBlocBuilder()
-                ),
+                    height: 400, child: MovieDetailsScreenShotsBlocBuilder()),
                 const SizedBox(height: 16),
                 Text(
                   'similar',

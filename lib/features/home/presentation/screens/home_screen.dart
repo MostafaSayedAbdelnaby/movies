@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
      HomeTab(),
      SearchTab(),
      ExploreTab(),
-     ProfileTab(),
+     ProfileTabScreen(),
   ];
 
   Widget _buildNavItem(String imageName, {required bool isSelected}) {
