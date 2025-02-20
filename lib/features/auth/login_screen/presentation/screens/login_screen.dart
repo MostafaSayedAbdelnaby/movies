@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                   title: Center(
                     child: Text(
                       state.message,
-                      style: textTheme.bodyMedium,
+                      style: textTheme.labelMedium,
                     ),
                   ),
                   actions: [
@@ -91,13 +91,13 @@ class LoginScreen extends StatelessWidget {
                         textEditingController: passwordController,
                         prefixIconImageName: 'password',
                         labelText: 'password',
-                        suffixIconImageName: 'show_password',
+                        suffixIconImageName: 'show password',
                         onTap: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'please_enter_password';
+                            return 'please enter password';
                           }
-                          if (value.length < 8) {
-                            return 'password_must_be_8_characters';
+                          if (value.length < 6) {
+                            return 'password must be 6 characters';
                           }
                           return null;
                         }, // convert to Icons

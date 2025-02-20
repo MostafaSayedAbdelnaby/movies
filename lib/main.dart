@@ -3,18 +3,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/app_routes.dart';
 import 'package:movies_app/core/widgets/service_locator.dart';
+import 'package:movies_app/features/auth/update_profile_screen/data/update_data_source/upate_data_source_impl.dart';
 import 'core/bloc_observer.dart';
 import 'core/theme/app_theme.dart';
 import 'firebase_options.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   await setUpServiceLocator();
-   Bloc.observer = MyBlocObserver();
-   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-   // MovieDetailsRemoteDataSourceImp().getMovieDetailsScreenShots(939243);
+  await setUpServiceLocator();
+  Bloc.observer = MyBlocObserver();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  UpdateDataSourceImpl().deleteUser();
   // await EasyLocalization.ensureInitialized();
   runApp(
       // EasyLocalization(
