@@ -56,11 +56,25 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 ),
               ),
             ),
-            const MoviesTextFormField(
-                labelText: "name", prefixIconImageName: "person"),
+            MoviesTextFormField(
+                labelText: "name", prefixIconImageName: "person",
+              onTap: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'please_enter_password';
+                }
+                return null;
+              } , ),
             const SizedBox(height: 16),
-            const MoviesTextFormField(
-                labelText: "phone", prefixIconImageName: "phone"),
+            MoviesTextFormField(
+                labelText: "phone", prefixIconImageName: "phone", onTap: (value) {
+              if (value == null || value.isEmpty) {
+                return 'please_enter_password';
+              }
+              if (value.length < 8) {
+                return 'password_must_be_8_characters';
+              }
+              return null;
+            },),
             const SizedBox(height: 30),
             const Text(
               "Reset Password",

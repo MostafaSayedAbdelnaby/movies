@@ -1,4 +1,4 @@
-import '../features/auth/register/presentation/screens/login_screen.dart';
+import '../features/auth/login_screen/presentation/screens/login_screen.dart';
 import '../features/auth/register/presentation/screens/register_screen.dart';
 import '../features/home/presentation/screens/home_screen.dart';
 import '../features/home/presentation/widgets/home_screen/tabs/profile_tab/profile_tab_screen.dart';

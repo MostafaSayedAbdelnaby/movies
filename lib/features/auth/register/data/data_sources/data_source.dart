@@ -6,6 +6,31 @@ abstract class DataSource {
   /// register User
   Future<void> register(UserModel userModel);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // Future<void> readUserData(String id);
   //
   // Future<void> createUser(

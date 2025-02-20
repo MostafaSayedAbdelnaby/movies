@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/app_routes.dart';
 import 'package:movies_app/features/auth/register/data/repositories/register_repo_impl.dart';
-import 'package:movies_app/features/auth/register/presentation/bloc/auth_cubit.dart';
+import 'package:movies_app/features/auth/register/presentation/bloc/register_cubit.dart';
 import 'package:movies_app/features/auth/register/presentation/bloc/register_state.dart';
 import 'package:movies_app/widgets/avatar_Carousel_widget.dart';
 import '../../../../../core/theme/app_text_theme.dart';
@@ -31,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final phoneNumberController = TextEditingController();
 
-  late final int indexOfImage;
+  late final String indexOfImage;
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +52,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: Text(
-                    state.message,
-                    style: textTheme.headlineLarge,
+                  title: Center(
+                    child: Text(
+                      state.message,
+                      style: textTheme.bodyMedium,
+                    ),
                   ),
                   actions: [
                     TextButton(
@@ -106,8 +108,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return "Email is Required";
                         }
                         final bool emailValid =
-                        RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9]+@[gmail]+\.[com]+")
-                            .hasMatch(value);
+                            RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9]+@[gmail]+\.[com]+")
+                                .hasMatch(value);
                         if (!emailValid) {
                           return "Email is Required with RegExp";
                         }
@@ -119,7 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       textEditingController: passwordController,
                       prefixIconImageName: 'password',
                       labelText: 'password',
-                      suffixIconImageName: 'show_password',
+                      suffixIconImageName: 'show password',
                       onTap: (value) {
                         if (value == null || value.isEmpty) {
                           return "Password is Required";
@@ -160,9 +162,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return 'enter_phone_number';
                         }
                         final phoneRegex =
-                        RegExp(r'^(?:\+20|0)?1[0-2,5]{1}[0-9]{8}$');
+                            RegExp(r'^(?:\+20|0)?1[0-2,5]{1}[0-9]{8}$');
                         if (!phoneRegex.hasMatch(value)) {
-                          return 'please_enter_a_valid_phone_number';
+                          return 'please enter a valid phone number';
                         }
                         return null;
                       },
@@ -179,14 +181,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          context.read<RegisterCubit>().addUser(
-                              UserModel(
-                                  name: nameController.text,
-                                  id: "",
-                                  email: emailController.text,
-                                  indexOfImage: 0,
-                                  password: passwordController.text,
-                                  phoneNumber: phoneNumberController.text));
+                          BlocProvider.of<RegisterCubit>(context)
+                              .register(UserModel(
+                            name: nameController.text,
+                            email: emailController.text,
+                            indexOfImage: "",
+                            phoneNumber: phoneNumberController.text,
+                            password: passwordController.text,
+                          ));
                         }
                       },
                     ),
@@ -205,7 +207,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           child: Text(
                             'Login',
-                            style: textTheme.labelMedium?.copyWith(fontSize: 14),
+                            style:
+                                textTheme.labelMedium?.copyWith(fontSize: 14),
                           ),
                         )
                       ],

@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import '../theme/app_text_theme.dart';
 import 'app_colors.dart';
 
+
+typedef Validator = String? Function(String?)?;
 // ignore: must_be_immutable
 class MoviesTextFormField extends StatelessWidget {
-  // final IconData prefixIcon;
   final String prefixIconImageName;
   final String labelText;
   final String? suffixIconImageName;
-  final Function? onTap;
+  final Validator onTap;
+
   final TextEditingController? textEditingController;
 
   const MoviesTextFormField({
@@ -16,10 +18,9 @@ class MoviesTextFormField extends StatelessWidget {
     this.suffixIconImageName,
     super.key,
     required this.prefixIconImageName,
-    this.onTap, this.textEditingController,
-    //required this.prefixIcon
+    required this.onTap,
+    this.textEditingController,
   });
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +28,13 @@ class MoviesTextFormField extends StatelessWidget {
       controller: textEditingController,
       autocorrect: true,
       style: textTheme.headlineSmall,
-      validator: (value) {
-        return null;
-      },
+      validator: onTap,
       decoration: InputDecoration(
         fillColor: AppColors.textFormFieldBackgroundColor,
         filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -41,9 +43,6 @@ class MoviesTextFormField extends StatelessWidget {
         ),
         labelText: labelText,
         labelStyle: labelMedium.copyWith(color: AppColors.textColor),
-        // suffixIcon: suffixIconImageName != null
-        //     ? Image.asset('assets/images/$suffixIconImageName.png')
-        //     : const SizedBox(),
         suffixIcon: suffixIconImageName != null
             ? const Icon(
                 Icons.visibility_off,
@@ -54,28 +53,7 @@ class MoviesTextFormField extends StatelessWidget {
           'assets/icons/$prefixIconImageName.png',
           color: AppColors.textColor,
         ),
-        // prefixIcon: Icon(
-        //   prefixIcon,
-        //   color: const Color(0xFFFFFFFF),
-        // ),
       ),
     );
-
-    // TextField(
-    //   decoration: InputDecoration(
-    //     border: OutlineInputBorder(
-    //       borderRadius: BorderRadius.circular(16),
-    //       borderSide: const BorderSide(width: 1, color: Color(0xFF282A28)),
-    //     ),
-    //     focusedBorder: OutlineInputBorder(
-    //       borderRadius: BorderRadius.circular(16),
-    //       borderSide: const BorderSide(width: 1, color: Color(0xFF282A28)),
-    //     ),
-    //     enabledBorder: OutlineInputBorder(
-    //       borderRadius: BorderRadius.circular(16),
-    //       borderSide: const BorderSide(width: 1, color: Color(0xFF282A28)),
-    //     ),
-    //   ),
-    // );
   }
 }
