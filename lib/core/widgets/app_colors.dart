@@ -7,5 +7,6 @@ class AppColors{
   static const textColor = Color(0XFFFFFFFF);
   static const redColor = Color(0XFFE82626);
   static const textFormFieldBackgroundColor = Color(0xff282A28);
+  static const profileColor = Color(0xFF212121);
 
 }

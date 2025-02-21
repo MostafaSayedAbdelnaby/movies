@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/widgets/service_locator.dart';
 import 'package:movies_app/features/home/presentation/bloc/movie_cubit/movie_cubit.dart';
 import 'package:movies_app/features/home/presentation/bloc/movie_state/movie_state.dart';
-import '../../../../../data/data_sources/movie_remote_data_source_imp.dart';
-import '../../../../../data/repositories/movie_repo_imp.dart';
 import 'home_tab_down.dart';
 import 'home_tab_up.dart';
 
@@ -51,16 +49,16 @@ class HomeTab extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          backgroundColor: const Color(0xFF171717),
+        return const Scaffold(
+          // backgroundColor: Color(0xFF171717),
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   HomeTabUp(),
-                  const SizedBox(height: 22),
-                  const HomeTabDown(),
-                  const SizedBox(height: 22),
+                  SizedBox(height: 22),
+                  HomeTabDown(),
+                  SizedBox(height: 22),
                 ],
               ),
             ),

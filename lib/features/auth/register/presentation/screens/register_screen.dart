@@ -31,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final phoneNumberController = TextEditingController();
 
-  late final String indexOfImage;
+  int image =0;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Form(
                   key: formKey,
                   child: Column(children: [
-                    const AvatarCarouselWidget(),
+                    AvatarCarouselWidget(),
                     Text("Avatar",
                         textAlign: TextAlign.center,
                         style: textTheme.headlineSmall),
@@ -185,7 +185,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               .register(UserModel(
                             name: nameController.text,
                             email: emailController.text,
-                            indexOfImage: "",
+                            indexOfImage: image,
                             phoneNumber: phoneNumberController.text,
                             password: passwordController.text,
                           ));

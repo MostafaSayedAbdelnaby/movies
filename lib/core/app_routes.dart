@@ -25,6 +25,6 @@ class AppRoutes {
     loginRoute: (context) => LoginScreen(),
     homeScreenRoute: (context) => const HomeScreen(),
     movieDetailsRoute: (context) => const MovieDetailsScreen(),
-    updateProfileScreenRoute: (context) => const UpdateProfileScreen(),
+    updateProfileScreenRoute: (context) => UpdateProfileScreen(),
   };
 }

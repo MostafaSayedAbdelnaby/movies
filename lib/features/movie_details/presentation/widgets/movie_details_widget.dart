@@ -46,8 +46,7 @@ class MovieDetailWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          // padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 29),
-          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 29),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,

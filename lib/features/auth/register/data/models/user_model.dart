@@ -4,7 +4,7 @@ class UserModel {
   String email;
   String password;
   String phoneNumber;
-  String indexOfImage;
+  int? indexOfImage;
 
   UserModel({
     required this.name,
@@ -12,7 +12,7 @@ class UserModel {
     required this.password,
     this.id ="",
     required this.phoneNumber,
-    required this.indexOfImage,
+    this.indexOfImage,
   });
 
   UserModel.fromJson(Map<String , dynamic> json):this (
@@ -21,7 +21,7 @@ class UserModel {
     password: json['password'],
     email: json['email'],
     phoneNumber: json['phoneNumber'],
-    indexOfImage: json['indexOfImage'],
+    indexOfImage: json['indexOfImage'] as int,
   );
 
   Map<String , dynamic>toJson (){

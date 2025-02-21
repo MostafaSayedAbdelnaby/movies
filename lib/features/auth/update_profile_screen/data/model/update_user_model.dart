@@ -4,7 +4,7 @@ class UpdateUserModel {
   // String password;
   String name;
   String phoneNumber;
-  String indexOfImage;
+  int? indexOfImage;
 
   UpdateUserModel({
     required this.name,
@@ -12,7 +12,7 @@ class UpdateUserModel {
     // required this.password,
     // this.id ="",
     required this.phoneNumber,
-    required this.indexOfImage,
+    this.indexOfImage,
   });
 
   UpdateUserModel.fromJson(Map<String , dynamic> json):this (
@@ -21,7 +21,7 @@ class UpdateUserModel {
     // password: json['password'],
     // email: json['email'],
     phoneNumber: json['phoneNumber'],
-    indexOfImage: json['indexOfImage'],
+    indexOfImage: json['indexOfImage'] as int,
   );
 
   Map<String , dynamic>toJson (){

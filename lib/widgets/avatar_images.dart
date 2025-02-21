@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../core/widgets/app_colors.dart';
+
 class AvatarImages extends StatefulWidget {
   final Function(int) avatarSelected;
 
@@ -12,7 +14,6 @@ class AvatarImages extends StatefulWidget {
 int currentIndex = 0;
 
 class _AvatarImagesState extends State<AvatarImages> {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +26,7 @@ class _AvatarImagesState extends State<AvatarImages> {
             height: 389,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
             decoration: BoxDecoration(
-              color: const Color(0xFF282A28),
+              color: AppColors.textFormFieldBackgroundColor,
               borderRadius: BorderRadius.circular(24),
             ),
             child: GridView.builder(
@@ -47,16 +48,16 @@ class _AvatarImagesState extends State<AvatarImages> {
                   },
                   child: Container(
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
+                        const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
                     decoration: BoxDecoration(
                       color: currentIndex == index
-                          ? const Color(0xFFF6BD00).withOpacity(0.50)
+                          ? AppColors.primaryColor.withOpacity(0.50)
                           : Colors.transparent,
-                      border: Border.all(color: const Color(0xFFF6BD00)),
+                      border: Border.all(color: AppColors.primaryColor),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Image.asset(
-                      'assets/images/avatar_${index + 1 % 2}.png',
+                      'assets/images/image_avatar_${index + 1 % 2}.png',
                     ),
                   ),
                 );

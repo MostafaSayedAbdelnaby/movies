@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AvatarCarouselWidget extends StatelessWidget {
-  const AvatarCarouselWidget({super.key});
+  int image=0;
+  AvatarCarouselWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +28,11 @@ class AvatarCarouselWidget extends StatelessWidget {
               radius: 58,
               child: Image.asset(
                 // "assets/images/image_avatar_${index + 1}.png",
-                "assets/images/image_avatar_2@3x.png",
+                "assets/images/image_avatar_${index + 1}@3x.png",
                 fit: BoxFit.fill,
-              ));
-        });
+              ),
+          );
+        },
+    );
   }
 }

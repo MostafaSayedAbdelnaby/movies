@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/theme/app_text_theme.dart';
+import 'package:movies_app/core/widgets/app_colors.dart';
 
 import 'home_tab_down_bloc_builder_widget.dart';
 import 'home_tab_down_future_builder_widget.dart';
@@ -10,32 +12,30 @@ class HomeTabDown extends StatelessWidget {
   final int? movieId;
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
               Text('Action',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400,color: Colors.white)),
-              Spacer(),
+                  style: textTheme.bodyMedium!.copyWith(
+                    fontWeight: FontWeight.w400
+                  )),
+              const Spacer(),
               Text(
                 'See More',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xFFF6BD00)),
+                style: textTheme.labelMedium,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 4,
               ),
-              Icon(Icons.arrow_forward,
-                  color: Color(0xFFF6BD00), size: 15)
+              const Icon(Icons.arrow_forward,
+                  color: AppColors.primaryColor, size: 15)
             ],
           ),
         ),
-        SizedBox(height: 16),
-        // HomeTabUpFutureBuilderWidget(),
+        const SizedBox(height: 16),
         HomeTabDownBlocBuilderWidget(),
       ],
     );

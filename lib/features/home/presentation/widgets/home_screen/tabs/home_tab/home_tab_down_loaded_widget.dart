@@ -15,7 +15,7 @@ const HomeTabDownLoadedWidget({super.key, required this.movieModelList});
                   animateToClosest: true,
                   enableInfiniteScroll: false,
                   disableCenter: true,
-                  viewportFraction: 0.48,
+                  viewportFraction: 0.6,
                   enlargeFactor: 0.52,
                   height: 300,
                   scrollDirection: Axis.horizontal),

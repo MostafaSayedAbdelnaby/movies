@@ -10,8 +10,8 @@ class UpdateDataSourceImpl implements UpdateDataSource {
     var collection = FirebaseFirestore.instance.collection("Users");
     var credential = FirebaseAuth.instance.currentUser;
     var ref = collection.doc(credential!.uid);
-    print("*********************************************************************************************************");
-    print(credential.uid);
+    // print("**************************************");
+    // print(credential.uid);
     try {
       await ref.update(updateUserModel.toJson());
     } catch (e) {
@@ -21,12 +21,74 @@ class UpdateDataSourceImpl implements UpdateDataSource {
 
   @override
   Future<void> deleteUser() async {
-    try{
-      var useId=FirebaseAuth.instance.currentUser?.uid;
-      await FirebaseAuth.instance.currentUser?.delete();
-      await FirebaseFirestore.instance.collection("Users").doc(useId).delete();
-    }catch(e){
+    try {
+      var useId =
+          FirebaseAuth.instance.currentUser?.uid; // get idOfUserData = idOfUser
+      await FirebaseAuth.instance.currentUser?.delete(); // delete User
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(useId)
+          .delete(); // delete UserData
+    } catch (e) {
       rethrow;
     }
   }
+
+  @override
+  Future<void> logOutUser() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  // @override
+  // getUser(String id) async {
+  //
+  //   // var getUserData = FireBaseManager.getUserCollection();
+  //   // DocumentSnapshot<UserModel> userResponse = await getUserData.doc(id).get();
+  //   // userData = userResponse.data();
+  //
+  //   try {
+  //     var ref =
+  //         await FirebaseFirestore.instance.collection("Users").doc(id).get();
+  //     // if (ref.exists) {
+  //     // UpdateUserModel.fromJson(ref.data()!);
+  //     var response = UpdateUserModel.fromJson(ref.data()!);
+  //      return response;
+  //     // }
+  //     // return null; // User not found
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+
+  @override
+  Future<UpdateUserModel?> getUser(String id) async {
+    if (id.isEmpty) {
+      throw Exception("User ID cannot be empty.");
+    }
+
+    try {
+      var ref = await FirebaseFirestore.instance.collection("Users").doc(id).get();
+      if (ref.exists) {
+        return UpdateUserModel.fromJson(ref.data()!);
+      } else {
+        return null; // User not found
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+// @override
+// Future<UpdateUserModel?> getUser(String id) async{
+//   // var useId =
+//   //     FirebaseAuth.instance.currentUser?.uid;
+//   try{
+//     var ref = await FirebaseFirestore.instance
+//         .collection("Users")
+//         .doc(id).get();
+//     return ref.data(UpdateUserModel.fromJson());
+//   }catch (e){
+//     rethrow;
+//   }
+// }
 }
