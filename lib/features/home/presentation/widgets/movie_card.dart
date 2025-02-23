@@ -4,17 +4,21 @@ import 'package:movies_app/core/theme/app_text_theme.dart';
 import 'package:movies_app/features/home/data/models/movie_model.dart';
 
 import '../../../../core/widgets/app_colors.dart';
+import '../../../movie_details/data/model/movie_details_model.dart';
 
 class MovieCard extends StatelessWidget {
   final double height;
   final double width;
   final MovieModel? movieModel;
+  final MovieDetailsModel? movieDetailsModel;
+
 
   const MovieCard({
     this.movieModel,
     super.key,
     this.height = 220,
     this.width = 140,
+    this.movieDetailsModel,
   });
 
   @override

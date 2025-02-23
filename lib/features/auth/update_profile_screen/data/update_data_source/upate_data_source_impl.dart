@@ -78,6 +78,10 @@ class UpdateDataSourceImpl implements UpdateDataSource {
     }
   }
 
+  // Future<DocumentSnapshot> getUserData(String uid) async {
+  //   return await FirebaseFirestore.instance.collection('users').doc(uid).get();
+  // }
+
 // @override
 // Future<UpdateUserModel?> getUser(String id) async{
 //   // var useId =
@@ -91,4 +95,5 @@ class UpdateDataSourceImpl implements UpdateDataSource {
 //     rethrow;
 //   }
 // }
+
 }

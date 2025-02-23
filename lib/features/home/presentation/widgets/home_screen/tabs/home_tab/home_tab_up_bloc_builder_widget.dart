@@ -45,6 +45,7 @@ class _HomeTabUpBlocBuilderWidgetState
             ),
           );
         } else if (state is NowPlayingMovieSuccessState) {
+          /// ***************************************************
           serviceLocator<MovieCubit>()
               .setBackgroundImage(state.movieModelList[0].posterPath ?? "");
           return HomeTabUpLoadedWidget(movieModelList: state.movieModelList);

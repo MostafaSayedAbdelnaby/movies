@@ -97,6 +97,21 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 children: [
                   Center(
                     child: GestureDetector(
+                      // onTap: () async {
+                      //   return await showDialog(
+                      //       context: context,
+                      //       builder: (context) {
+                      //         return AvatarImages(
+                      //           avatarSelected: (index) {
+                      //             setState(() {
+                      //               currentIndex = index; // Update local state
+                      //             });
+                      //           },
+                      //           userDataCubit: userBloc, // Pass the existing cubit instance
+                      //         );
+                      //       });
+                      // },
+
                       onTap: () async {
                         return await showDialog(
                             context: context,

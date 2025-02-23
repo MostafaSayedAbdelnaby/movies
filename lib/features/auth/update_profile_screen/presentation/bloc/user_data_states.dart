@@ -22,3 +22,9 @@ class UpdateOnErrorStates extends UserDataStates{
   UpdateOnErrorStates(this.message);
 }
 class UpdateOnSuccessStates extends UserDataStates{}
+
+// AvatarImageSetState
+class AvatarImageState extends UserDataStates {
+  int currentIndex;
+  AvatarImageState(this.currentIndex);
+}

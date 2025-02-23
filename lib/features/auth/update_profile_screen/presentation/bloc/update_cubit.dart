@@ -11,6 +11,11 @@ class UserDataCubit extends Cubit<UserDataStates> {
 
   UserDataCubit({required this.updateRepo}) : super(UserDataInitial());
 
+  ///
+  setAvatarImage(int currentIndex){
+    emit(AvatarImageState(currentIndex));
+  }
+
   /// update User
   Future<void> updateUser(UpdateUserModel updateUserModel) async {
     emit(UpdateOnLoadingStates());

@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-
 import '../core/widgets/app_colors.dart';
+import '../features/auth/update_profile_screen/presentation/bloc/update_cubit.dart';
+import '../features/auth/update_profile_screen/presentation/bloc/user_data_states.dart';
 
 class AvatarImages extends StatefulWidget {
   final Function(int) avatarSelected;
 
-  const AvatarImages({super.key, required this.avatarSelected});
+  // final UserDataCubit userDataCubit;
+
+  const AvatarImages({
+    super.key,
+    required this.avatarSelected,
+    // required this.userDataCubit,
+  });
 
   @override
   State<AvatarImages> createState() => _AvatarImagesState();
 }
 
-int currentIndex = 0;
-
 class _AvatarImagesState extends State<AvatarImages> {
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,6 +47,11 @@ class _AvatarImagesState extends State<AvatarImages> {
               itemCount: 9,
               itemBuilder: (context, index) {
                 return GestureDetector(
+                  // onTap: () {
+                  //   widget.userDataCubit.setAvatarImage(index); // Update the avatar index in the cubit
+                  //   widget.avatarSelected.call(index); // Call the avatarSelected callback
+                  //   Navigator.pop(context); // Close the dialog after selection
+                  // },
                   onTap: () {
                     setState(() {
                       currentIndex = index;

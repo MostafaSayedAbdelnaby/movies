@@ -26,23 +26,31 @@ class ProfileTabScreen extends StatelessWidget {
                   expandedHeight: 389,
                   collapsedHeight: 389,
                   pinned: false,
-                  flexibleSpace: SafeArea(child: ProfileTabBar()),
+                  flexibleSpace: SafeArea(child: ProfileTabBar(
+
+                  )),
                 )
               ];
             },
             body: TabBarView(
               children: [
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        child: Image.asset('assets/images/popcorn.png'),
-                      ),
-                    ],
-                  ),
+                // TabBarView 1
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // TabBarViewWidgets(
+                    //   data: bloc.favoriteResponse,
+                    // ),
+                    // TabBarViewWidgets(
+                    //   data: bloc.historyResponse,
+                    // ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Image.asset('assets/images/popcorn.png'),
+                    ),
+                  ],
                 ),
+                // TabBarView 2
                 Padding(
                   padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
                   child:

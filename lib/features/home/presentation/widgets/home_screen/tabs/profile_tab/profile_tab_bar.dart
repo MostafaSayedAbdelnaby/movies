@@ -8,6 +8,7 @@ import '../../../../../../auth/update_profile_screen/presentation/bloc/user_data
 
 
 class ProfileTabBar extends StatelessWidget {
+
   const ProfileTabBar({super.key,});
 
   @override
@@ -98,7 +99,6 @@ class ProfileTabBar extends StatelessWidget {
                               onPressed: () {
                                 Navigator.pushNamed(
                                   context, AppRoutes.updateProfileScreenRoute,
-
                                   /// ******************************
                                   arguments: userBloc.updateUserModel, // send a Model
                                   // that I'm edit it in updateProfileScreenRoute

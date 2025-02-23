@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+
+/// used in Register Screen
+
 // ignore: must_be_immutable
 class AvatarCarouselWidget extends StatelessWidget {
   int image=0;
@@ -16,19 +19,20 @@ class AvatarCarouselWidget extends StatelessWidget {
           disableCenter: false,
           enlargeCenterPage: true,
           enableInfiniteScroll: false,
-          viewportFraction: 0.42,
+          viewportFraction: 0.43,
           enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-          enlargeFactor: 0.58,
+          enlargeFactor: 0.5,
           height: 130,
           scrollDirection: Axis.horizontal,
+
         ),
         itemCount: 9,
         itemBuilder: (context, index, realIndex) {
           return CircleAvatar(
               radius: 58,
               child: Image.asset(
-                // "assets/images/image_avatar_${index + 1}.png",
-                "assets/images/image_avatar_${index + 1}@3x.png",
+                "assets/images/image_avatar_${index + 1}.png",
+                // "assets/images/image_avatar_${index + 1}@3x.png",
                 fit: BoxFit.fill,
               ),
           );

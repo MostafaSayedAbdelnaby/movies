@@ -87,7 +87,11 @@ class MovieDetailWidget extends StatelessWidget {
                     child: Text('Watch', style: textTheme.bodyMedium),
                     onPressed: () {
                       /// ************************************************************* Dr , sent list
-                      Navigator.pushNamed(context, AppRoutes.profileTabScreenRoute,arguments: movieDetailsModel?.genres);
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.profileTabScreenRoute,
+                        arguments: movieDetailsModel?.genres,
+                      );
                     }),
                 const SizedBox(height: 12),
                 Row(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../../core/widgets/service_locator.dart';
-import '../../../../../data/models/movie_model.dart';
 import '../../../../bloc/movie_cubit/movie_cubit.dart';
 import '../../../../bloc/movie_state/movie_state.dart';
 
