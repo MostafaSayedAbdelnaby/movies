@@ -11,8 +11,10 @@ class UserDataCubit extends Cubit<UserDataStates> {
 
   UserDataCubit({required this.updateRepo}) : super(UserDataInitial());
 
-  ///
-  setAvatarImage(int currentIndex){
+  /// set Avatar Image
+  setAvatarImage(int currentIndex) {
+    /// Dr osama
+    // currentIndex = updateUserModel?.indexOfImage ?? 0;
     emit(AvatarImageState(currentIndex));
   }
 
@@ -27,49 +29,38 @@ class UserDataCubit extends Cubit<UserDataStates> {
     }
   }
 
-  // /// get User
-  // getUser(String id) async {
-  //   emit(UserDataLoadingStates());
-  //   try {
-  //     await updateRepo.getUser(id);
-  //     emit(UserDataSuccessStates());
-  //   } catch (e) {
-  //     emit(UserDataErrorStates(e.toString()));
-  //   }
-  // }
-
   /// get User
-  Future<void> getUser(String id) async {
-    emit(UserDataLoadingStates());
-    currentUser = FirebaseAuth.instance.currentUser; // Get current user
-    if (currentUser == null || currentUser?.uid.isEmpty == true) {
-      emit(UserDataErrorStates("User is not authenticated."));
-      return;
-    }
+  Future<void> getUser() async {
+    emit(GetDataOnLoadingStates());
     try {
-      updateUserModel = await updateRepo.getUser(currentUser!.uid); // Pass valid user ID
-      emit(UserDataSuccessStates());
+      updateUserModel = await updateRepo.getUser();
+      emit(GetDataOnSuccessStates(
+        updateUserModel: updateUserModel,
+      ));
     } catch (e) {
-      emit(UserDataErrorStates(e.toString()));
+      emit(GetDataOnErrorStates(e.toString()));
     }
   }
 
-
-  /// Dr osama
+  /// delete User
   Future<void> deleteUser() async {
+    emit(DeleteOnLoadingStates());
     try {
       await updateRepo.deleteUser();
+      emit(DeleteOnSuccessStates());
     } catch (e) {
-      rethrow;
+      emit(DeleteOnErrorStates(e.toString()));
     }
   }
 
-  /// Dr osama
+  /// logOut User
   Future<void> logOutUser() async {
+    emit(LogOutOnLoadingStates());
     try {
       await updateRepo.logOutUser();
+      emit(LogOutOnSuccessStates());
     } catch (e) {
-      rethrow;
+      emit(LogOutOnErrorStates(e.toString()));
     }
   }
 }

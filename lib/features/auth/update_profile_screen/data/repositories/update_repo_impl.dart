@@ -36,9 +36,9 @@ class UpdateRepoImpl implements UpdateRepo {
   }
 
   @override
-  getUser(String id) async {
+  getUser() async {
     try {
-      return await updateDataSource.getUser(id);
+      return await updateDataSource.getUser();
     } catch (e) {
       rethrow;
     }

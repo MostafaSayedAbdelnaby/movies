@@ -31,6 +31,7 @@ class LoginScreen extends StatelessWidget {
             Navigator.pushNamedAndRemoveUntil(
               context,
               AppRoutes.homeScreenRoute,
+              // AppRoutes.updateProfileScreenRoute,
               (route) => false,
             );
           } else if (state is LoginOnErrorState) {

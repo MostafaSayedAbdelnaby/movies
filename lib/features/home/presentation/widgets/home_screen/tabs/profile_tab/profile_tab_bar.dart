@@ -6,26 +6,72 @@ import 'package:movies_app/core/widgets/app_colors.dart';
 import 'package:movies_app/features/auth/update_profile_screen/presentation/bloc/update_cubit.dart';
 import '../../../../../../auth/update_profile_screen/presentation/bloc/user_data_states.dart';
 
-
 class ProfileTabBar extends StatelessWidget {
-
-  const ProfileTabBar({super.key,});
+  const ProfileTabBar({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final userBloc = BlocProvider.of<UserDataCubit>(context);
+    // final userBloc = BlocProvider.of<UserDataCubit>(context);
     // Fetch user data when the widget is built
-    userBloc.getUser(userBloc.currentUser?.uid ?? "");
+    // userBloc.getUser(userBloc.currentUser?.uid ?? "");
 
-    return BlocBuilder<UserDataCubit, UserDataStates>(
+    return BlocConsumer<UserDataCubit, UserDataStates>(
+        listener: (context, state) {
+          if (state is LogOutOnSuccessStates) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              AppRoutes.loginRoute,
+                  (route) => false,
+            );
+          } else if (state is LogOutOnLoadingStates) {
+
+          } else if (state is LogOutOnErrorStates) {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Center(
+                    child: Text(
+                      state.message,
+                      style: textTheme.labelMedium,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Ok")),
+                  ],
+                );
+              },
+            );
+          }
+        },
+        listenWhen: (previous, current) {
+          return (current is LogOutOnLoadingStates ||
+              current is LogOutOnErrorStates ||
+              current is LogOutOnSuccessStates);
+        },
+        buildWhen: (previous, current) {
+          return (current is GetDataOnLoadingStates ||
+              current is GetDataOnErrorStates ||
+              current is GetDataOnSuccessStates);
+        },
         builder: (context, state) {
-          if (state is UserDataLoadingStates) {
+          if (state is GetDataOnLoadingStates) {
+            print("************* object ***********");
             return const Center(child: CircularProgressIndicator());
           }
-          if (state is UserDataErrorStates) {
+          if (state is GetDataOnErrorStates) {
+            print("************* object    object  ***********");
+
             return Center(child: Text("Error: ${state.message}"));
           }
-          if (state is UserDataSuccessStates) {
+          if (state is GetDataOnSuccessStates) {
+            print("************* object    object    object  ***********");
             return Container(
               color: AppColors.profileColor,
               child: Column(
@@ -33,22 +79,22 @@ class ProfileTabBar extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                        right: 10, left: 10, top: 42),
+                    padding:
+                        const EdgeInsets.only(right: 10, left: 10, top: 42),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           children: [
                             Image.asset(
-                              'assets/images/image_avatar_${(userBloc.updateUserModel?.indexOfImage ?? 0) + 1}.png',
+                              'assets/images/image_avatar_${(state.updateUserModel?.indexOfImage ?? 0) + 1}.png',
                               fit: BoxFit.cover,
                               height: 118,
                               width: 118,
                             ),
                             const SizedBox(height: 15),
                             Text(
-                              userBloc.updateUserModel?.name ?? 'No Name',
+                              state.updateUserModel?.name ?? 'No Name',
                               style: textTheme.bodyMedium,
                             )
                           ],
@@ -57,8 +103,7 @@ class ProfileTabBar extends StatelessWidget {
                           children: [
                             Text(
                               '12',
-                              style: textTheme.headlineLarge!
-                                  .copyWith(
+                              style: textTheme.headlineLarge!.copyWith(
                                   fontSize: 34, fontWeight: FontWeight.w700),
                             ),
                             const SizedBox(height: 20),
@@ -99,14 +144,16 @@ class ProfileTabBar extends StatelessWidget {
                               onPressed: () {
                                 Navigator.pushNamed(
                                   context, AppRoutes.updateProfileScreenRoute,
+
                                   /// ******************************
-                                  arguments: userBloc.updateUserModel, // send a Model
+                                  arguments:
+                                      state.updateUserModel, // send a Model
                                   // that I'm edit it in updateProfileScreenRoute
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 12),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
@@ -128,16 +175,18 @@ class ProfileTabBar extends StatelessWidget {
                                 // UserDataCubit(
                                 //         updateRepo:
                                 //             UpdateRepoImpl(UpdateDataSourceImpl()))
-                                userBloc.logOutUser();
+                                // userBloc.logOutUser();
+                                BlocProvider.of<UserDataCubit>(context)
+                                    .logOutUser();
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   AppRoutes.loginRoute,
-                                      (_) => false,
+                                  (_) => false,
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 12),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
@@ -174,8 +223,8 @@ class ProfileTabBar extends StatelessWidget {
                     indicatorColor: AppColors.primaryColor,
                     dividerColor: Colors.transparent,
                     // labelColor: Color(0xFFFFFFFF),
-                    labelStyle:
-                    textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w400),
+                    labelStyle: textTheme.bodyLarge!
+                        .copyWith(fontWeight: FontWeight.w400),
                     labelPadding: const EdgeInsets.only(bottom: 15),
                     tabs: const [
                       Tab(
@@ -203,10 +252,8 @@ class ProfileTabBar extends StatelessWidget {
             );
           }
           return const SizedBox();
-        }
-    );
-    
-    
+        });
+
     //     return BlocBuilder<UserDataCubit, UserDataStates>(
     //     bloc: UserDataCubit(updateRepo: UpdateRepoImpl(UpdateDataSourceImpl())),
     //     builder: (context, state) {
@@ -408,10 +455,6 @@ class ProfileTabBar extends StatelessWidget {
     //     });
   }
 }
-
-
-
-
 
 // class ProfileTabBar extends StatelessWidget {
 //   final UserDataCubit? userBloc;

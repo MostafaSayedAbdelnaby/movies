@@ -10,6 +10,7 @@ class MoviesTextFormField extends StatelessWidget {
   final String labelText;
   final String? suffixIconImageName;
   final Validator onTap;
+  // final String? initialValue;
 
   final TextEditingController? textEditingController;
 
@@ -20,11 +21,13 @@ class MoviesTextFormField extends StatelessWidget {
     required this.prefixIconImageName,
     required this.onTap,
     this.textEditingController,
+    // this.initialValue,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      // initialValue: initialValue,
       controller: textEditingController,
       autocorrect: true,
       style: textTheme.headlineSmall,

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import '../core/widgets/app_colors.dart';
-import '../features/auth/update_profile_screen/presentation/bloc/update_cubit.dart';
-import '../features/auth/update_profile_screen/presentation/bloc/user_data_states.dart';
+import 'package:movies_app/core/widgets/app_colors.dart';
+import 'package:movies_app/features/auth/update_profile_screen/data/model/update_user_model.dart';
+import 'package:movies_app/features/auth/update_profile_screen/presentation/bloc/update_cubit.dart';
 
 class AvatarImages extends StatefulWidget {
   final Function(int) avatarSelected;
 
-  // final UserDataCubit userDataCubit;
+  final UserDataCubit? userDataCubit;
+  final UpdateUserModel? updateUserModel;
 
   const AvatarImages({
     super.key,
     required this.avatarSelected,
-    // required this.userDataCubit,
+    this.userDataCubit,
+    this.updateUserModel,
   });
 
   @override
@@ -19,7 +21,14 @@ class AvatarImages extends StatefulWidget {
 }
 
 class _AvatarImagesState extends State<AvatarImages> {
-  int currentIndex = 0;
+  int? currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    // currentIndex = widget
+    //     .updateUserModel?.indexOfImage; // Initialize with the current index
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,21 +56,26 @@ class _AvatarImagesState extends State<AvatarImages> {
               itemCount: 9,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  // onTap: () {
-                  //   widget.userDataCubit.setAvatarImage(index); // Update the avatar index in the cubit
-                  //   widget.avatarSelected.call(index); // Call the avatarSelected callback
-                  //   Navigator.pop(context); // Close the dialog after selection
-                  // },
                   onTap: () {
                     setState(() {
-                      currentIndex = index;
+                      currentIndex = index; // Update the current index
                     });
-                    widget.avatarSelected(index);
+
+                    /// this is good but don't effect in Container. Dr osama
+                    // widget.userDataCubit?.setAvatarImage(index); // Update the avatar index in the cubit
+                    widget.avatarSelected(
+                        index); // Call the avatarSelected callback
                   },
+                  // onTap: () {
+                  //   userDataCubit?.setAvatarImage(index);
+                  //   avatarSelected(index); // Call the avatarSelected callback
+                  // },
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
                     decoration: BoxDecoration(
+                      /// Dr osama
+                      // color: currentIndex == widget.updateUserModel?.indexOfImage
                       color: currentIndex == index
                           ? AppColors.primaryColor.withOpacity(0.50)
                           : Colors.transparent,

@@ -7,14 +7,14 @@ import '../../../../../../auth/update_profile_screen/data/repositories/update_re
 import '../../../../../../auth/update_profile_screen/presentation/bloc/update_cubit.dart';
 import '../../../../bloc/movie_cubit/movie_cubit.dart';
 
-
 class ProfileTabScreen extends StatelessWidget {
   const ProfileTabScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserDataCubit(updateRepo: UpdateRepoImpl(UpdateDataSourceImpl())),
+      create: (context) =>
+          UserDataCubit(updateRepo: UpdateRepoImpl(UpdateDataSourceImpl()))..getUser(),
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -26,9 +26,7 @@ class ProfileTabScreen extends StatelessWidget {
                   expandedHeight: 389,
                   collapsedHeight: 389,
                   pinned: false,
-                  flexibleSpace: SafeArea(child: ProfileTabBar(
-
-                  )),
+                  flexibleSpace: SafeArea(child: ProfileTabBar()),
                 )
               ];
             },
@@ -39,10 +37,10 @@ class ProfileTabScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // TabBarViewWidgets(
-                    //   data: bloc.favoriteResponse,
+                    //   favorite,
                     // ),
                     // TabBarViewWidgets(
-                    //   data: bloc.historyResponse,
+                    //   history,
                     // ),
                     Container(
                       alignment: Alignment.center,
@@ -51,15 +49,24 @@ class ProfileTabScreen extends StatelessWidget {
                   ],
                 ),
                 // TabBarView 2
-                Padding(
-                  padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
-                  child:
-                  BlocProvider(
-                      create: (context) {
-                        return serviceLocator<MovieCubit>()..getNowPlayingMovie();
-                      },
-                    child: const SizedBox(),
-                  ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+                //   child:
+                //   BlocProvider(
+                //       create: (context) {
+                //         return serviceLocator<MovieCubit>()..getNowPlayingMovie();
+                //       },
+                //     child: const SizedBox(),
+                //   ),
+                //   ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      child: Image.asset('assets/images/popcorn.png'),
+                    ),
+                  ],
                 ),
               ],
             ),

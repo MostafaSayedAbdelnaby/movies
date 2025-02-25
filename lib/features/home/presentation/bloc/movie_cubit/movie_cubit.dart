@@ -3,7 +3,6 @@ import '../../../domain/repositories/movie_repo.dart';
 import '../movie_state/movie_state.dart';
 
 class MovieCubit extends Cubit<MovieState> {
-// final NowPlayingUseCase nowPlayingUseCase;
   final MovieRepo movieRepo;
   // int currentIndex = 0;
 

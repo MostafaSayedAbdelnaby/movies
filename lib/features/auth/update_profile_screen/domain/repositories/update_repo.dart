@@ -7,5 +7,5 @@ abstract class UpdateRepo {
 
   Future<void> logOutUser();
 
-  getUser(String id);
+  getUser();
 }

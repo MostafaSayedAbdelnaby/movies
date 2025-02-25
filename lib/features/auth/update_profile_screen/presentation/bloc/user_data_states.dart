@@ -1,12 +1,16 @@
+import '../../data/model/update_user_model.dart';
 
-abstract class UserDataStates{}
+abstract class UserDataStates {}
 
-class UserDataInitial extends UserDataStates{}
+class UserDataInitial extends UserDataStates {}
 
-// UserDataStates
+///      ****************         UserDataStates             *****************
 class UserDataLoadingStates extends UserDataStates {}
 
 class UserDataSuccessStates extends UserDataStates {
+  final UpdateUserModel? updateUserModel;
+
+  UserDataSuccessStates({required this.updateUserModel});
 }
 
 class UserDataErrorStates extends UserDataStates {
@@ -15,16 +19,57 @@ class UserDataErrorStates extends UserDataStates {
   UserDataErrorStates(this.message);
 }
 
-// UpdateStates
-class UpdateOnLoadingStates extends UserDataStates{}
-class UpdateOnErrorStates extends UserDataStates{
+///      ****************         GetDataStates             *****************
+class GetDataOnLoadingStates extends UserDataStates {}
+
+class GetDataOnErrorStates extends UserDataStates {
   String message;
+
+  GetDataOnErrorStates(this.message);
+}
+
+class GetDataOnSuccessStates extends UserDataStates {
+  final UpdateUserModel? updateUserModel;
+
+  GetDataOnSuccessStates({required this.updateUserModel});
+}
+
+///      ****************         UpdateStates             *****************
+class UpdateOnLoadingStates extends UserDataStates {}
+
+class UpdateOnErrorStates extends UserDataStates {
+  String message;
+
   UpdateOnErrorStates(this.message);
 }
-class UpdateOnSuccessStates extends UserDataStates{}
 
-// AvatarImageSetState
+class UpdateOnSuccessStates extends UserDataStates {}
+
+///      ****************         deleteStates             *****************
+class DeleteOnLoadingStates extends UserDataStates {}
+
+class DeleteOnErrorStates extends UserDataStates {
+  String message;
+
+  DeleteOnErrorStates(this.message);
+}
+
+class DeleteOnSuccessStates extends UserDataStates {}
+
+///      ****************         LogOut             *****************
+class LogOutOnLoadingStates extends UserDataStates {}
+
+class LogOutOnErrorStates extends UserDataStates {
+  String message;
+
+  LogOutOnErrorStates(this.message);
+}
+
+class LogOutOnSuccessStates extends UserDataStates {}
+
+///      ****************         AvatarImageSetState             *****************
 class AvatarImageState extends UserDataStates {
   int currentIndex;
+
   AvatarImageState(this.currentIndex);
 }

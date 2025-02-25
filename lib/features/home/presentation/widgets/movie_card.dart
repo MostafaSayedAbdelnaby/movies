@@ -30,6 +30,7 @@ class MovieCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20), ),
       child: GestureDetector(
         onTap: () {
+          /// **************************************
           Navigator.pushNamed(context, AppRoutes.movieDetailsRoute,
               arguments: movieModel!.id);
         },

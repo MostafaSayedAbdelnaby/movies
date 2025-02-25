@@ -7,7 +7,7 @@ abstract class UpdateDataSource {
 
   Future<void> logOutUser();
 
-  getUser(String id);
+  getUser();
 
 
 }

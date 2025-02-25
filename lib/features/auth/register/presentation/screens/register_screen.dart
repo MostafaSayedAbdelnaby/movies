@@ -3,16 +3,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/app_routes.dart';
+import 'package:movies_app/core/theme/app_text_theme.dart';
+import 'package:movies_app/core/widgets/app_colors.dart';
+import 'package:movies_app/core/widgets/movies_elevated_button.dart';
+import 'package:movies_app/core/widgets/movies_text_form_field.dart';
+import 'package:movies_app/features/auth/register/data/data_sources/data_source_impl.dart';
+import 'package:movies_app/features/auth/register/data/models/user_model.dart';
 import 'package:movies_app/features/auth/register/data/repositories/register_repo_impl.dart';
 import 'package:movies_app/features/auth/register/presentation/bloc/register_cubit.dart';
 import 'package:movies_app/features/auth/register/presentation/bloc/register_state.dart';
 import 'package:movies_app/widgets/avatar_Carousel_widget.dart';
-import '../../../../../core/theme/app_text_theme.dart';
-import '../../../../../core/widgets/app_colors.dart';
-import '../../../../../core/widgets/movies_elevated_button.dart';
-import '../../../../../core/widgets/movies_text_form_field.dart';
-import '../../data/data_sources/data_source_impl.dart';
-import '../../data/models/user_model.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -33,7 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final phoneNumberController = TextEditingController();
 
-  int image =0;
+  int image = 0;
   bool positive = false;
 
   @override
@@ -185,7 +185,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           BlocProvider.of<RegisterCubit>(context)
-                              .register(UserModel(
+                              .register(
+                              UserModel(
                             name: nameController.text,
                             email: emailController.text,
                             indexOfImage: image,
@@ -208,11 +209,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onTap: () {
                             Navigator.pushNamed(context, AppRoutes.loginRoute);
                           },
-                          child: Text(
-                            'Login',
-                            style:
-                                textTheme.labelMedium?.copyWith(fontSize: 14),
-                          ),
+                          child: Text('Login',
+                              style: textTheme.labelMedium
+                                  ?.copyWith(fontSize: 14),),
                         )
                       ],
                     ),

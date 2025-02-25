@@ -61,13 +61,11 @@ class UpdateDataSourceImpl implements UpdateDataSource {
   // }
 
   @override
-  Future<UpdateUserModel?> getUser(String id) async {
-    if (id.isEmpty) {
-      throw Exception("User ID cannot be empty.");
-    }
+  Future<UpdateUserModel?> getUser() async {
+    var currentUser = FirebaseAuth.instance.currentUser; // Get current user
 
     try {
-      var ref = await FirebaseFirestore.instance.collection("Users").doc(id).get();
+      var ref = await FirebaseFirestore.instance.collection("Users").doc(currentUser?.uid).get();
       if (ref.exists) {
         return UpdateUserModel.fromJson(ref.data()!);
       } else {
